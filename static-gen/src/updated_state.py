@@ -2,13 +2,17 @@
 import json
 import os
 import fs_util
+import pathlib
 
 # locally keeps track of what remote s3 files we've completed processing
 
 STATE_FILE = 'updated_state.json'
+
+_existing = str(pathlib.Path(fs_util.data_dir()) / STATE_FILE)
+
 _state = {}
-if os.path.exists(STATE_FILE):
-    with open(STATE_FILE) as f:
+if os.path.exists(_existing):
+    with open(_existing) as f:
         file = f.read()
         _state = json.loads(file)
 

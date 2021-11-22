@@ -7,6 +7,7 @@ import botocore
 BUCKET = 'logpublish'
 client = boto3.client('s3')
 
+# generator for daily files in s3 bucket
 def daily_files_gen():
     response = client.list_objects_v2(
         Bucket=BUCKET,
@@ -32,3 +33,11 @@ def _rekey(item):
         'size': item['Size'],
         'ts': "{}".format(item['LastModified'])
     }
+
+def load_file(key):
+    response = client.get_object(
+        Bucket=BUCKET,
+        Key=key
+    )
+    data = response['Body'].read().decode('utf-8')
+    return data.strip().split('\n')
