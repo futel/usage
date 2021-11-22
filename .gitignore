@@ -1,3 +1,4 @@
 env.sh
+static-gen/env
 */src/__pycache__
 *.tmp
