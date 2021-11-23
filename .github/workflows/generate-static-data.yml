@@ -1,4 +1,4 @@
-name: Preprocess s3 data into static json files
+name: Preprocess s3 events to static gh-pages
 on:
   # schedule:
   #   - cron: '50 */6 * * *'
