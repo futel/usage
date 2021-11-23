@@ -8,7 +8,13 @@ def parse_timestamp(ts):
     return datetime.fromisoformat(ts)
 
 def by_channel(events):
-    pass
+    result = {}
+    for event in events:
+        channel = event['channel']
+        if not channel in result:
+            result[channel] = []
+        result[channel].append(event)
+    return result
 
 def by_day(events):
     result = {}

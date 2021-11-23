@@ -3,11 +3,19 @@ import grouper
 import fs_util
 import filenames
 import event_writer
+import re
 
 # Helps spread event data around on disk
 
 def events_channel(grouped_events):
-    pass
+    for event_name, group in grouped_events.items():
+        by_channel = grouper.by_channel(group)
+        print(by_channel)
+        outdir = filenames.build_event_channel_dir(event_name)
+        fs_util.mkdir_safe(outdir)
+        for channel, events in by_channel.items():
+            event_writer.blend_event_channel(event_name, channel, events)
+            # print("{} -> {}".format(channel,events))
 
 def events_date(grouped_events):
     for name, group in grouped_events.items():
@@ -31,4 +39,8 @@ def by_event(events):
 def update_all(events):
     # in s3, each line is its own json doc
     events = map(lambda x: json.loads(x), events)
+    def fix_channel(x):
+        x['channel'] = re.sub(r'(SIP).(.*)-.*', r'\1-\2', x['channel'])
+        return x
+    events = map(fix_channel, events)
     by_event(events)
