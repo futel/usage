@@ -21,6 +21,19 @@ def blend_event_date(event, year, month, events):
         in2 = fs_util.read_all_events(outfile)
         write_unique(in1 + in2 + events, outfile)
 
+# Blends existing date/{year}/{month} data with new
+def blend_date(year, month, events):
+    days = map(lambda x: parse_timestamp(x['timestamp']), events)
+    days = map(lambda d: d.day, days)
+    days = set(days)
+    # print(days)
+    for day in days:
+        infile = filenames.data_date_year_month_day_file(year, month, day)
+        outfile = filenames.build_date_year_month_day_file(year, month, day)
+        in1 = fs_util.read_all_events(infile)
+        in2 = fs_util.read_all_events(outfile)
+        write_unique(in1 + in2 + events, outfile)
+
 def blend_event_channel(event_name, channel, events):
     infile = filenames.data_event_channel_file(event_name, channel)
     outfile = filenames.build_event_channel_file(event_name, channel)

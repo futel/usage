@@ -1,46 +1,22 @@
 import json
-import grouper
-import fs_util
-import filenames
-import event_writer
 import re
+import event_spreader
+import date_spreader
 
 # Helps spread event data around on disk
 
-def events_channel(grouped_events):
-    for event_name, group in grouped_events.items():
-        by_channel = grouper.by_channel(group)
-        # print(by_channel)
-        outdir = filenames.build_event_channel_dir(event_name)
-        fs_util.mkdir_safe(outdir)
-        for channel, events in by_channel.items():
-            event_writer.blend_event_channel(event_name, channel, events)
-            # print("{} -> {}".format(channel,events))
-
-def events_date(grouped_events):
-    for name, group in grouped_events.items():
-        by_day = grouper.by_day(group)
-        # print("{} -> {}".format(name, by_day))
-        for year, months in by_day.items():
-            for month, events in months.items():
-                outdir = filenames.build_event_year_month_dir(name, year, month)
-                fs_util.mkdir_safe(outdir)
-                event_writer.blend_event_date(name, year, month, events)
-
-def by_event(events):
-    grouped = grouper.by_event(events)
-    # print(json.dumps(grouped, indent=2))
-    for name, group in grouped.items():
-        # print('Event group: {}'.format(name))
-        fs_util.mkdir_build_by_event(name)
-    events_date(grouped)
-    events_channel(grouped)
+def fix_channels(events):
+    result = []
+    for e in events:
+        new = dict(e)
+        result.append(new)
+        new['channel'] = re.sub(r'(SIP).(.*)-.*', r'\1-\2', new['channel'])
+    return result
 
 def update_all(events):
     # in s3, each line is its own json doc
     events = map(lambda x: json.loads(x), events)
-    def fix_channel(x):
-        x['channel'] = re.sub(r'(SIP).(.*)-.*', r'\1-\2', x['channel'])
-        return x
-    events = map(fix_channel, events)
-    by_event(events)
+
+    events = fix_channels(events)
+    event_spreader.by_event(events)
+    date_spreader.by_date(events)

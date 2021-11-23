@@ -16,10 +16,10 @@ def by_channel(events):
         result[channel].append(event)
     return result
 
-def by_day(events):
+def by_year_month(events):
     result = {}
     for event in events:
-        # print(event)
+        print(event)
         date = parse_timestamp(event['timestamp'])
         year = date.year
         month = date.month
