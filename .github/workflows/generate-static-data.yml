@@ -42,3 +42,4 @@ jobs:
         cwd: './gh-pages'
         branch: 'gh-pages'
         message: 'updated static data'
+        pathspec_error_handling: exitImmediately
