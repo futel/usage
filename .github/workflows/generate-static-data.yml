@@ -1,0 +1,42 @@
+name: Preprocess s3 data into static json files
+on:
+  # schedule:
+  #   - cron: '50 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  dumper:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: checkout
+      uses: actions/checkout@v2.3.4
+      with:
+        ref: gh-pages
+        path: gh-pages
+    - name: copy data from gh-pages branch
+      run: |
+        rsync -avv gh-pages/data/ static-gen/data/
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: install deps
+      working-directory: static-gen
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: run static generator
+      working-directory: static-gen
+      run: python src/static-gen.py
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    - name: copy dated data back to gh-pages branch
+      run: rsync -avv static-gen/build/ gh-pages/data/ && rm -rf static-gen/build
+    - name: commit updated data
+      uses: EndBug/add-and-commit@v7
+      with:
+        add: 'gh-pages/data'
+        cwd: './gh-pages'
+        branch: 'gh-pages'
+        message: 'updated static data'

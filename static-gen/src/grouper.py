@@ -19,7 +19,6 @@ def by_channel(events):
 def by_year_month(events):
     result = {}
     for event in events:
-        print(event)
         date = parse_timestamp(event['timestamp'])
         year = date.year
         month = date.month
