@@ -13,6 +13,6 @@ for s3_key in s3_util.daily_files_gen():
         print("Got {} events".format(len(events)))
         spreader.update_all(events)
         updated_state.update(s3_key)
-        break # DEBUG ONLY!!
+        # break # DEBUG ONLY!!
 
 updated_state.flush_write()

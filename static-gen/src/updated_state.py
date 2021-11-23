@@ -32,6 +32,6 @@ def update(item):
 
 def flush_write():
     buildDir = fs_util.make_build_dir()
-    print(buildDir)
+    # print(buildDir)
     with open('{}/{}'.format(buildDir, STATE_FILE), 'w') as outfile:
         json.dump(_state, outfile, indent=2)

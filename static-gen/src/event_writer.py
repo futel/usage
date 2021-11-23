@@ -13,7 +13,7 @@ def blend_event_date(event, year, month, events):
     days = map(lambda x: parse_timestamp(x['timestamp']), events)
     days = map(lambda d: d.day, days)
     days = set(days)
-    print(days)
+    # print(days)
     for day in days:
         infile = filenames.data_event_year_month_day_file(event, year, month, day)
         outfile = filenames.build_event_year_month_day_file(event, year, month, day)

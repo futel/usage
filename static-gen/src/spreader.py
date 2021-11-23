@@ -10,7 +10,7 @@ import re
 def events_channel(grouped_events):
     for event_name, group in grouped_events.items():
         by_channel = grouper.by_channel(group)
-        print(by_channel)
+        # print(by_channel)
         outdir = filenames.build_event_channel_dir(event_name)
         fs_util.mkdir_safe(outdir)
         for channel, events in by_channel.items():
