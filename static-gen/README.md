@@ -64,10 +64,19 @@ tbd (next)
 
 # github action
 
-The GitHub action ties it all together and provides automation.
+The [GitHub action](.github/workflows/generate-static-data.yml) is our
+build automation that ties it all together.
 
-TBD/WIP
+Here's what it does:
 
+* clone this repro (`main` branch)
+* clone this repo (`gh-pages` branch)
+* rsync the `gh-pages` data dir into the `static-gen` subdir
+* run the static generator
+* rsync the new output data from the `gh-pages/build` dir into the `gh-pages` data dir
+* commit the data back to the gh-pages branch
+
+The action is configured to run every 4 hours.
 
 # data layout
 
@@ -107,5 +116,4 @@ So some example paths are:
 * `data/events/current-time/date/2021/11/20211121.json` - contains all events on 2021-11-21 requesting the current time feature
 * `data/events/ConfbridgeJoin/channels/SIP-680.json` - contains all conference bridge join events from channel `SIP-680`
 * `data/date/2021/11/20211119.json` - contains all events for 2021-11-19
-
-TBD/WIP
+* `data/channel/SIP-702/date/2021/11/20211117.json` - contains all events for SIP channel 702 on 2021-11-17
