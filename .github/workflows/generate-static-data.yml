@@ -38,7 +38,7 @@ jobs:
     - name: commit updated data
       uses: EndBug/add-and-commit@v7
       with:
-        add: 'gh-pages/data'
+        add: 'data'
         cwd: './gh-pages'
         branch: 'gh-pages'
         message: 'updated static data'
