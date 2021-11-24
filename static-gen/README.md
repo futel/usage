@@ -93,6 +93,13 @@ data /
         {year} /
             {mon} /
                 {yyyymmdd}.json
+    channel /
+        {channel-name} /
+        ...
+        {channel-name} /
+            {year} /
+                {month} /
+                    {yyyymmdd}.json
 ```
 
 So some example paths are:
