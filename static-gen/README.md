@@ -1,4 +1,3 @@
-
 # static gen
 
 Generates static data files from s3 event files.
@@ -66,5 +65,40 @@ tbd (next)
 # github action
 
 The GitHub action ties it all together and provides automation.
+
+TBD/WIP
+
+
+# data layout
+
+Within the `data` dir, the data is organized in several redundant layouts that
+intend to make it easy to access.
+
+```
+data /
+    events /
+       {event-name1} /
+       {event-name2} /
+       ...
+       {event-name-n} /
+           channels /
+               {channel-name}.json
+               ...
+               {channel-name}.json
+           date /
+               {year} /
+                   {mon} /
+                       {yyyymmdd}.json
+    date /
+        {year} /
+            {mon} /
+                {yyyymmdd}.json
+```
+
+So some example paths are:
+
+* `data/events/current-time/date/2021/11/20211121.json` - contains all events on 2021-11-21 requesting the current time feature
+* `data/events/ConfbridgeJoin/channels/SIP-680.json` - contains all conference bridge join events from channel `SIP-680`
+* `data/date/2021/11/20211119.json` - contains all events for 2021-11-19
 
 TBD/WIP
