@@ -8,6 +8,11 @@ in `gh-pages` branch are up-to-date within a few hours, or a day at worst.
 
 ## what it does
 
+It detects new or changed data in the s3 bucket and combines the new data
+with existing data to produce an updated changeset in the ephemeral `build` dir.
+
+This updated changeset is sync'd back into the data directory and persisted.
+
 All long-term state is kept in the
 [`gh-pages` branch](https://github.com/futel/usage/tree/gh-pages/data)
 in the [`data`](https://github.com/futel/usage/tree/gh-pages/data) directory.
@@ -49,4 +54,17 @@ This app will:
 
 * look at the bucket `logpublish` bucket content for keys prefixed with `events/prod`
 * for each key, compare the last updated date and timestamp. If different, continue, else skip file
-* ...
+
+And finally, if everything worked, we dump an updated version of the `updated_state.json`
+file out to the `build/` directory.
+
+# aggregation
+
+tbd (next)
+
+
+# github action
+
+The GitHub action ties it all together and provides automation.
+
+TBD/WIP
