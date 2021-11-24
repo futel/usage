@@ -1,7 +1,7 @@
 from datetime import datetime
 import re
 
-# Helps group events
+# Helps group events according to a criteria (like channel, event, date)
 
 def parse_timestamp(ts):
     ts = re.sub(r'Z$', r'+00:00', ts)

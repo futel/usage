@@ -27,9 +27,7 @@ def events_date(grouped_events):
 
 def by_event(events):
     grouped = grouper.by_event(events)
-    # print(json.dumps(grouped, indent=2))
     for name, group in grouped.items():
-        # print('Event group: {}'.format(name))
         fs_util.mkdir_build_by_event(name)
     events_date(grouped)
     events_channel(grouped)

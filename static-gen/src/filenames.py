@@ -16,6 +16,13 @@ def build_event_year_month_dir(name, year, month):
     parent = build_dir()
     return str(_parented_event_year_month_dir(parent, name, year, month))
 
+def build_channel_year_month_dir(channel, year, month):
+    parent = build_dir()
+    return str(_parented_channel_year_month_dir(parent, channel, year, month))
+
+def _parented_channel_year_month_dir(parent, channel, year, month):
+    return pathlib.Path(parent) / 'channel/{}/date/{}/{}'.format(channel, year, month)
+
 def build_event_channel_dir(event_name):
     return str(_parented_event_channel_dir(build_dir(), event_name))
 
@@ -57,4 +64,14 @@ def data_date_year_month_day_file(year, month, day):
 
 def build_date_year_month_day_file(year, month, day):
     dir = build_date_year_month(year, month)
+    return dir / '{}{}{}.json'.format(year, month, day)
+
+def build_channel_year_month_day_file(channel, year, month, day):
+    return _parented_channel_year_month_day_file(build_dir(), channel, year, month, day)
+
+def data_channel_year_month_day_file(channel, year, month, day):
+    return _parented_channel_year_month_day_file(data_dir(), channel, year, month, day)
+
+def _parented_channel_year_month_day_file(parent, channel, year, month, day):
+    dir = pathlib.Path(parent) / 'channel/{}/date/{}/{}'.format(channel, year, month)
     return dir / '{}{}{}.json'.format(year, month, day)

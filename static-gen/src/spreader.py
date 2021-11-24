@@ -2,6 +2,7 @@ import json
 import re
 import event_spreader
 import date_spreader
+import channel_spreader
 
 # Helps spread event data around on disk
 
@@ -20,3 +21,4 @@ def update_all(events):
     events = fix_channels(events)
     event_spreader.by_event(events)
     date_spreader.by_date(events)
+    channel_spreader.by_channel(events)
