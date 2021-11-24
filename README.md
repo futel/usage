@@ -1,11 +1,7 @@
 # futel usage
 
-Usage data processing and visualization.
+THIS IS THE GH-PAGES BRANCH.
 
-# static-gen
+JUST SO YOU KNOW AND DO NOT THINK THAT YOU ARE IN THE `main` BRANCH.
 
-tbd
-
-# visualization
-
-tbd
+THINGS ARE DIFFERENT HERE.
