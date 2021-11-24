@@ -1,5 +1,6 @@
 env.sh
 static-gen/env
 static-gen/build
+static-gen/data
 */src/__pycache__
 *.tmp
