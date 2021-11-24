@@ -1,7 +1,7 @@
 name: Preprocess s3 events to static gh-pages
 on:
-  # schedule:
-  #   - cron: '50 */6 * * *'
+  schedule:
+    - cron: '15 */4 * * *'
   workflow_dispatch:
 
 jobs:
