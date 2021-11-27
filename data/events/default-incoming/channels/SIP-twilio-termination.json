@@ -1,1 +1,1 @@
-[{"timestamp": "2021-11-14T18:30:23.885Z", "channel": "SIP-twilio-termination", "event": "default-incoming"}, {"timestamp": "2021-11-20T18:03:51.675Z", "channel": "SIP-twilio-termination", "event": "default-incoming"}]
+[{"timestamp": "2021-11-14T18:30:23.885Z", "channel": "SIP-twilio-termination", "event": "default-incoming"}, {"timestamp": "2021-11-20T18:03:51.675Z", "channel": "SIP-twilio-termination", "event": "default-incoming"}, {"timestamp": "2021-11-26T22:36:13+00:00", "channel": "SIP-twilio-termination", "event": "default-incoming"}]
