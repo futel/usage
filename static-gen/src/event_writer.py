@@ -5,7 +5,7 @@ import filenames
 
 def write_unique(all_events, file):
     uniques = list({str(v):v for v in all_events}.values())
-    uniques.sort(key=lambda x : str(x))
+    uniques.sort(key=lambda x : x.get('timestamp'))
     fs_util.write_all_events(file, uniques)
 
 # Blends existing event/year/month data with new
