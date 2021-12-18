@@ -12,4 +12,4 @@ indir = sys.argv[1]
 print("Aggregating roll-ups in {}".format(indir))
 
 agg = Aggregator(indir)
-agg.aggregateDates()
+agg.rollUpDates()
