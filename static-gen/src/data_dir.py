@@ -7,7 +7,7 @@ import os
 class DataDir:
 
     def __init__(self, dir):
-        self.dir = pathlib.Path(dir)
+        self.dir = pathlib.Path(dir).resolve()
 
     def getDateDir(self):
         return self.dir / 'date'
@@ -23,8 +23,7 @@ class DataDir:
 
     def getSubdirs(self, subdirRoot):
         with os.scandir(subdirRoot) as it:
-            all = list(it)
-            dirs = map(lambda x: x.name, filter(lambda x: x.is_dir(), all))
+            dirs = map(lambda x: x.name, filter(lambda x: x.is_dir(), it))
             dirs = map(lambda x: self.dir / subdirRoot / x, dirs)
             return list(dirs)
 
