@@ -20,6 +20,16 @@ class Aggregator:
         channelDirs = self.dir.getChannelDirs()
         [self._rollUpChannel(ch) for ch in channelDirs]
 
+    def rollUpEvents(self):
+        eventDirs = self.dir.getEventDirs()
+        [self._rollUpEvent(ev) for ev in eventDirs]
+
+    def _rollUpEvent(self, eventDir):
+        print("Event: {}".format(eventDir))
+        dataDir = DataDir(eventDir)
+        yearDirs = dataDir.getDateYears()
+        [self._rollUpYear(y) for y in yearDirs]
+
     def _rollUpChannel(self, channelDir):
         print("Channel: {}".format(channelDir))
         chDir = DataDir(channelDir)

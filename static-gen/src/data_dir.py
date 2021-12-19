@@ -18,6 +18,9 @@ class DataDir:
     def getChannelDirs(self):
         return self.getSubdirs(self.dir / 'channel')
 
+    def getEventDirs(self):
+        return self.getSubdirs(self.dir / 'events')
+
     def getSubdirs(self, subdirRoot):
         with os.scandir(subdirRoot) as it:
             all = list(it)
