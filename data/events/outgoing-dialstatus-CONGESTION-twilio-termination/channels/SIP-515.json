@@ -1,1 +1,0 @@
-[{"timestamp": "2021-11-18T11:29:42.813Z", "channel": "SIP-515", "event": "outgoing-dialstatus-CONGESTION-twilio-termination"}, {"timestamp": "2021-11-18T11:30:12.124Z", "channel": "SIP-515", "event": "outgoing-dialstatus-CONGESTION-twilio-termination"}, {"timestamp": "2021-11-18T11:30:43.927Z", "channel": "SIP-515", "event": "outgoing-dialstatus-CONGESTION-twilio-termination"}]
