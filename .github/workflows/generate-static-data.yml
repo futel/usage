@@ -33,6 +33,8 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
     - name: copy dated data back to gh-pages branch
       run: rsync -avv static-gen/build/ gh-pages/data/ && rm -rf static-gen/build
+    - name: generate rollups
+      run: python static-gen/src/rollups.py gh-pages/data/
     - name: debug peek in the data directory
       run: ls -l gh-pages && ls -l gh-pages/data
     - name: commit updated data
