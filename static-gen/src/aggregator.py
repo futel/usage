@@ -14,11 +14,17 @@ class Aggregator:
     def rollUpDates(self):
         years = self.dir.getDateYears()
         print(years)
-        for year in years:
-            self._rollUpYear(year)
+        [self._rollUpYear(y) for y in years]
 
     def rollUpChannels(self):
-        pass
+        channelDirs = self.dir.getChannelDirs()
+        [self._rollUpChannel(ch) for ch in channelDirs]
+
+    def _rollUpChannel(self, channelDir):
+        print("Channel: {}".format(channelDir))
+        chDir = DataDir(channelDir)
+        yearDirs = chDir.getDateYears()
+        [self._rollUpYear(y) for y in yearDirs]
 
     # aggregattes a single year, which includes aggregating all
     # months that exist for that year
@@ -28,12 +34,11 @@ class Aggregator:
         allMonthFiles = self.dir.allJsonFiles(yearDir)
         yearData = self._combine(allMonthFiles)
         yearFile = str(yearDir) + '.json'
-        print("------------")
-        print(yearFile)
+        print("Year: {}".format(yearFile))
         fs_util.write_all_events(yearFile, yearData)
 
     def _rollUpMonth(self, monthDir):
-        print("------------\nAggregating {}".format(monthDir))
+        print("Rolling up {}".format(monthDir))
         files = self.dir.allJsonFiles(monthDir)
         monthData = self._combine(files)
         monthFile = str(monthDir) + ".json"

@@ -13,3 +13,5 @@ print("Aggregating roll-ups in {}".format(indir))
 
 agg = Aggregator(indir)
 agg.rollUpDates()
+agg.rollUpChannels()
+print("All done.")

@@ -15,6 +15,9 @@ class DataDir:
     def getDateYears(self):
         return self.getSubdirs(self.getDateDir())
 
+    def getChannelDirs(self):
+        return self.getSubdirs(self.dir / 'channel')
+
     def getSubdirs(self, subdirRoot):
         with os.scandir(subdirRoot) as it:
             all = list(it)
