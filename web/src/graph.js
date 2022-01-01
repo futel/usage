@@ -10,6 +10,7 @@ async function buildAndShow(){
   console.log(`graphing from ${start} to ${end}`);
   dataLoader.getRangeByMonth(start, end)
     .then(filterToSelectedPhones)
+    .then(filterToSelectedEvents)
     .then(data => {
       console.log(data);
     });
@@ -20,6 +21,10 @@ function filterToSelectedPhones(data){
   const selectedPhones = phoneList.getSelectedPhones();
   const wanted = Object.values(selectedPhones).map(v => `SIP-${v}`);
   return data.filter(d => wanted.includes(d.channel));
+}
+
+function filterToSelectedEvents(data){
+  return data;
 }
 
 export {
