@@ -1,6 +1,7 @@
 
 import sys
 from aggregator import Aggregator
+import event_list
 
 # Recomputes aggregated roll-up data in the data dir
 
@@ -15,5 +16,7 @@ agg = Aggregator(indir)
 agg.rollUpDates()
 agg.rollUpChannels()
 agg.rollUpEvents()
+
+event_list.write_events(indir)
 
 print("All done.")
