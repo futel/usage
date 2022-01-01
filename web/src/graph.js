@@ -9,10 +9,17 @@ async function buildAndShow(){
   const end = dates.getEndDate();
   console.log(`graphing from ${start} to ${end}`);
   dataLoader.getRangeByMonth(start, end)
-    .then(r => {
-      console.log(r);
+    .then(filterToSelectedPhones)
+    .then(data => {
+      console.log(data);
     });
 
+}
+
+function filterToSelectedPhones(data){
+  const selectedPhones = phoneList.getSelectedPhones();
+  const wanted = Object.values(selectedPhones).map(v => `SIP-${v}`);
+  return data.filter(d => wanted.includes(d.channel));
 }
 
 export {

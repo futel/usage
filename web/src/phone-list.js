@@ -50,13 +50,21 @@ function selectAll(){
   });
 }
 
-// checks if all are selected
-function allSelected(){
-  console.log('build me');
+// Returns the selected phones
+function getSelectedPhones(){
+  const result = {};
+  const sel = getSelect();
+  Array.prototype.forEach.call(sel.options, opt => {
+    if(opt.selected){
+      result[opt.innerHTML] = opt.value;
+    }
+  });
+  return result;
 }
 
 export {
   init,
   phones,
-  selectAll
+  selectAll,
+  getSelectedPhones
 }

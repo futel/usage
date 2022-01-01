@@ -9,7 +9,7 @@ async function getMonth(year, month){
 async function getRangeByMonth(start, end){
   const range = makeYearMonthRange(start, end);
   const padded = range.map(d => [d[0], `${d[1]}`.padStart(2, '0')]);
-  const urls = padded.map(d => `/usage/data/date/${d[0]}/${d[1]}.json`);
+  const urls = padded.map(d => `data/date/${d[0]}/${d[1]}.json`);
   console.log(urls);
   const promises = urls.map(url =>
     fetch(url).then(resp => {
