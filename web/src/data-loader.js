@@ -3,6 +3,6 @@ function test(){
   console.log("flim");
 }
 
-module.exports = {
+export {
   test
 }
