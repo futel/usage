@@ -1,16 +1,26 @@
 'use strict';
 
-// https://futel.github.io/usage/data/date/{year}/{month}.json
 async function getMonth(year, month){
 
 }
 
 //TODO: convert local to UTC?
+// https://futel.github.io/usage/data/date/{year}/{month}.json
 async function getRangeByMonth(start, end){
   const range = makeYearMonthRange(start, end);
   const padded = range.map(d => [d[0], `${d[1]}`.padStart(2, '0')]);
   const urls = padded.map(d => `/usage/data/date/${d[0]}/${d[1]}.json`);
   console.log(urls);
+  const promises = urls.map(url =>
+    fetch(url).then(resp => {
+      console.log(resp);
+      return resp.ok ? resp.json() : [];
+    })
+  );
+  return Promise.all(promises)
+    .then(responses => {
+      return responses.flatMap(r => r);
+    });
 }
 
 function makeYearMonthRange(start, end){

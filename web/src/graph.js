@@ -8,7 +8,10 @@ async function buildAndShow(){
   const start = dates.getStartDate();
   const end = dates.getEndDate();
   console.log(`graphing from ${start} to ${end}`);
-  dataLoader.getRangeByMonth(start, end);
+  dataLoader.getRangeByMonth(start, end)
+    .then(r => {
+      console.log(r);
+    });
 
 }
 
