@@ -50,6 +50,11 @@ function selectAll(){
   });
 }
 
+// checks if all are selected
+function allSelected(){
+  console.log('build me');
+}
+
 export {
   init,
   phones,

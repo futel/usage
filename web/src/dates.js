@@ -2,14 +2,31 @@
 import Litepicker from 'litepicker';
 
 function init(){
-  console.log("dates init");
   const picker = new Litepicker({
     singleMode: false,
-    element: document.getElementById('date-start'),
-    elementEnd: document.getElementById('date-end')
+    element: getStartElem(),
+    elementEnd: getEndElem()
   });
 }
 
+function getStartElem(){
+  return document.getElementById('date-start');
+}
+
+function getEndElem(){
+  return document.getElementById('date-end');
+}
+
+function getStartDate(){
+  return getStartElem().value;
+}
+
+function getEndDate(){
+  return getEndElem().value;
+}
+
 export {
-  init
+  init,
+  getStartDate,
+  getEndDate
 };
