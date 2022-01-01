@@ -3,13 +3,6 @@ html {
 	margin: 0;
 }
 
-/* .sidebar {
-	width: 180px;
+#phone-list {
+	width: 95%;
 }
-
-@media (min-width: 768px) {
-	.main {
-		padding-right: 40px;
-		padding-left: 220px; /* 180 + 40 */
-	}
-} */
