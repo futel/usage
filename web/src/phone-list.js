@@ -24,11 +24,14 @@ const phones = {
   "demo": "700"
 };
 
+function getSelect(){
+  return document.getElementById('phone-list');
+}
+
 function init(){
-  const list = document.getElementById('phone-list');
+  const list = getSelect();
   const allPhones = Object.entries(phones)
   allPhones.sort();
-  console.log(allPhones);
   allPhones.forEach(p => {
     const name = p[0];
     const ext = p[1];
@@ -39,8 +42,16 @@ function init(){
   });
 }
 
+function selectAll(){
+  const sel = getSelect();
+  console.log(sel.options);
+  Array.prototype.forEach.call(sel.options, opt => {
+    opt.selected = true;
+  });
+}
 
 export {
   init,
-  phones
+  phones,
+  selectAll
 }

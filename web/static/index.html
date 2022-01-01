@@ -14,14 +14,16 @@
         <img src="futel_logo_black.png" alt="futel" width=120px/>
 
         <ul class="nav flex-column">
-          <li class="nav-item">
+          <li class="nav-item fw-bold">
             Start: <input type="text" id="date-start">
           </li>
-          <li class="nav-item">
+          <li class="nav-item fw-bold">
             End: <input type="text" id="date-end">
           </li>
           <li class="nav-item">
-            Phones:<br/>
+            <span class="fw-bold">Phones:</span>
+            <button id='allphones' type="button" class="btn btn-primary my-2">all</button>
+            <br/>
             <select id="phone-list" multiple="true" size="15">
             </select>
           </li>
