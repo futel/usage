@@ -27,7 +27,7 @@
             <select id="phone-list" multiple="true" size="8">
             </select>
             <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              <input class="form-check-input" type="checkbox" value="" id="combine-phones">
               <label class="form-check-label" for="flexCheckDefault">
                 combine phones
               </label>
@@ -36,6 +36,15 @@
           <li class="nav-item">
             <span class="fw-bold">Events:</span>
             <select id="event-list" multiple="true" size="8">
+            </select>
+          </li>
+          <li class="nav-item">
+            <span class="fw-bold">Aggregate:</span>
+            <select id="aggregate" class="mt-2 mx-2">
+              <option value="hourly">hourly</option>
+              <option value="daily" selected="true">daily</option>
+              <option value="monthly">monthly</option>
+              <option value="total">total</option>
             </select>
           </li>
           <li class="nav-item">

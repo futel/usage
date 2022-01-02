@@ -3,6 +3,7 @@ import * as dates from './dates';
 import * as dataLoader from './data-loader';
 import * as phoneList from './phone-list';
 import * as eventList from './event-list';
+import * as aggregation from './aggregation';
 
 async function buildAndShow(){
   const start = dates.getStartDate();
@@ -11,10 +12,10 @@ async function buildAndShow(){
   dataLoader.getRangeByMonth(start, end)
     .then(filterToSelectedPhones)
     .then(filterToSelectedEvents)
+    .then(aggregation.aggregate)
     .then(data => {
       console.log(data);
     });
-
 }
 
 function filterToSelectedPhones(data){

@@ -1,9 +1,5 @@
 'use strict';
 
-async function getMonth(year, month){
-
-}
-
 //TODO: convert local to UTC?
 // https://futel.github.io/usage/data/date/{year}/{month}.json
 async function getRangeByMonth(start, end){
@@ -24,11 +20,11 @@ async function getRangeByMonth(start, end){
 }
 
 function makeYearMonthRange(start, end){
-  let cur = new Date(start);
-  const endDate = new Date(end);
+  let cur = new Date(`${start}T00:00:00Z`);
+  const endDate = new Date(`${end}T23:59:59Z`);
   const result = [];
   result.push(yearMonth(cur));
-  while(cur.getTime() <= endDate.getTime()){
+  while(cur.getTime() < endDate.getTime()){
     const last = cur;
     cur = new Date(cur.getTime() +  1000 * 60 * 60 * 24);
     if(last.getUTCMonth() != cur.getUTCMonth()){
@@ -49,7 +45,6 @@ async function getEventList(){
 }
 
 export {
-  getMonth,
   getRangeByMonth,
   getEventList
 }
