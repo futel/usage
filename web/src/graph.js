@@ -4,6 +4,10 @@ import * as dataLoader from './data-loader';
 import * as phoneList from './phone-list';
 import * as eventList from './event-list';
 import * as aggregation from './aggregation';
+import { stringToColor } from './ui';
+import Chart from 'chart.js/auto';
+
+let chart;
 
 async function buildAndShow(){
   const start = dates.getStartDate();
@@ -20,7 +24,41 @@ async function buildAndShow(){
 }
 
 function plot(data){
-  
+  //TODO: Handle grand TOTAL
+  const chartData = {
+    labels: createLabels(data),
+    datasets: createDatasets(data)
+  };
+  console.log(chartData);
+  const config = {
+    type: 'line',
+    data: chartData,
+    options: {}
+  };
+  const ctx = document.getElementById('chart').getContext('2d');
+  if(chart){
+    chart.destroy();
+  }
+  chart = new Chart(
+    ctx,
+    config
+  );
+}
+
+function createDatasets(data){
+  return Object.entries(data).map(e => {
+    const name = e[0] === 'x' ? 'all phones' : e[0];
+    return {
+      label: name,
+      borderColor: stringToColor(name),
+      data: Object.values(e[1])
+    };
+  });
+}
+
+function createLabels(data){
+  const firstEntry = Object.entries(data)[0];
+  return Object.keys(firstEntry[1]);
 }
 
 function filterToSelectedPhones(data){
