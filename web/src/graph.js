@@ -15,7 +15,12 @@ async function buildAndShow(){
     .then(aggregation.aggregate)
     .then(data => {
       console.log(data);
+      plot(data);
     });
+}
+
+function plot(data){
+  
 }
 
 function filterToSelectedPhones(data){
