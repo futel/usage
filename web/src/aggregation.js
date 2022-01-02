@@ -1,6 +1,7 @@
 'use strict';
 
 const dates = require('./dates');
+import * as phoneList from './phone-list';
 
 const pad2 = x => `${x}`.padStart(2, '0');
 
@@ -45,14 +46,27 @@ function aggregate(data){
     data = squashExtensions(data);
   }
   const type = getAggType();
-  const phones = new Set( data.map(d => d.channel))
-  console.log(phones);
+  // const phones = new Set( data.map(d => d.channel))
+  // console.log(phones);
 
   const startDate = dates.getStartDate();
   const endDate = dates.getEndDate();
-  const buckets = makeBuckets(type, startDate, endDate);
-  console.log("buckets:")
-  console.log(buckets);
+  const result = Object.fromEntries(
+    Object.keys(phoneList.getSelectedPhones())
+      .map(phone => {
+        const buckets = makeBuckets(type, startDate, endDate).map(b => [b,0]);
+        return [phone, Object.fromEntries(buckets)];
+      })
+  );
+  console.log(result);
+  const agg = AGGREGATORS[type];
+  data.forEach(event => {
+    const ch = event.channel.replace(/^SIP-/, '');
+    const name = phoneList.nameFromChannel(ch);
+    const bucket = agg.bucket(new Date(event.timestamp))
+    result[name][bucket] = result[name][bucket] + 1;
+  });
+  console.log(result);
   return data;
 }
 
@@ -60,13 +74,11 @@ function makeBuckets(type, startDate, endDate){
   const agg = AGGREGATORS[type];
   const result = [];
   let cur = new Date(`${startDate}T00:00:00Z`);
-  console.log(`FML ${startDate} => ${cur} => ${agg.bucket(cur)}`)
   const e = new Date(`${endDate}T23:59:59Z`);
   while(agg.bucket(cur) !== agg.bucket(e)){
     result.push(agg.bucket(cur));
     const x = cur;
     cur = agg.next(cur);
-    // console.log(`${x} => ${cur}`)
   }
   result.push(agg.bucket(e));
   return result;

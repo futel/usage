@@ -23,6 +23,9 @@ const phones = {
   "hoyt": "695",
   "demo": "700"
 };
+const chanToName = Object.fromEntries(
+  Object.entries(phones).map(x => [x[1],x[0]])
+);
 
 function getSelect(){
   return document.getElementById('phone-list');
@@ -62,9 +65,14 @@ function getSelectedPhones(){
   return result;
 }
 
+function nameFromChannel(ch){
+  return chanToName[ch];
+}
+
 export {
   init,
   phones,
   selectAll,
-  getSelectedPhones
+  getSelectedPhones,
+  nameFromChannel
 }
