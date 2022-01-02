@@ -16,11 +16,19 @@ jobs:
     - name: build web ui
       run: npm run build
       working-directory: ./web
+    - name: checkout gh-pages
+      uses: actions/checkout@v2.3.4
+      with:
+        ref: gh-pages
+        path: gh-pages
+    - name: copy build output to gh-pages
+      run: |
+        rsync -avv web/dist/ gh-pages/
     - name: commit updated data
       uses: EndBug/add-and-commit@v7
       with:
-        add: 'dist'
-        cwd: './web'
+        add: '.'
+        cwd: './gh-pages'
         branch: 'gh-pages'
-        message: 'published web ui to gh-pages'
+        message: 'publishing web ui to gh-pages'
         pathspec_error_handling: exitImmediately
