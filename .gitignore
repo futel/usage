@@ -4,3 +4,5 @@ static-gen/build
 static-gen/data
 */src/__pycache__
 *.tmp
+web/node_modules
+web/dist

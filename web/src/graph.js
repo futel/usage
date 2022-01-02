@@ -1,0 +1,77 @@
+
+import * as dates from './dates';
+import * as dataLoader from './data-loader';
+import * as phoneList from './phone-list';
+import * as eventList from './event-list';
+import * as aggregation from './aggregation';
+import { stringToColor } from './ui';
+import Chart from 'chart.js/auto';
+
+let chart;
+
+async function buildAndShow(){
+  const start = dates.getStartDate();
+  const end = dates.getEndDate();
+  console.log(`graphing from ${start} to ${end}`);
+  dataLoader.getRangeByMonth(start, end)
+    .then(filterToSelectedPhones)
+    .then(filterToSelectedEvents)
+    .then(aggregation.aggregate)
+    .then(data => {
+      console.log(data);
+      plot(data);
+    });
+}
+
+function plot(data){
+  //TODO: Handle grand TOTAL
+  const chartData = {
+    labels: createLabels(data),
+    datasets: createDatasets(data)
+  };
+  console.log(chartData);
+  const config = {
+    type: 'line',
+    data: chartData,
+    options: {}
+  };
+  const ctx = document.getElementById('chart').getContext('2d');
+  if(chart){
+    chart.destroy();
+  }
+  chart = new Chart(
+    ctx,
+    config
+  );
+}
+
+function createDatasets(data){
+  return Object.entries(data).map(e => {
+    const name = e[0] === 'x' ? 'all phones' : e[0];
+    return {
+      label: name,
+      borderColor: stringToColor(name),
+      data: Object.values(e[1])
+    };
+  });
+}
+
+function createLabels(data){
+  const firstEntry = Object.entries(data)[0];
+  return Object.keys(firstEntry[1]);
+}
+
+function filterToSelectedPhones(data){
+  const selectedPhones = phoneList.getSelectedPhones();
+  const wanted = Object.values(selectedPhones).map(v => `SIP-${v}`);
+  return data.filter(d => wanted.includes(d.channel));
+}
+
+function filterToSelectedEvents(data){
+  const selectedEvents = eventList.getSelectedEvents();
+  return data.filter(d => selectedEvents.includes(d.event));
+}
+
+export {
+  buildAndShow
+}
