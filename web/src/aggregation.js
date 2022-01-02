@@ -40,14 +40,16 @@ const AGGREGATORS = {
   total: TOTAL
 }
 
-// Assumes data has been pre-filtered to
+// Assumes data has been pre-filtered to only the desired channels + event types
 function aggregate(data){
-  if(document.getElementById('combine-phones').checked){
-    data = squashExtensions(data);
-  }
   const type = getAggType();
-  // const phones = new Set( data.map(d => d.channel))
-  // console.log(phones);
+  if(document.getElementById('combine-phones').checked){
+    if(type === 'total'){
+      return { 'total': data.length };
+    }
+
+    data = squashChannels(data);
+  }
 
   const startDate = dates.getStartDate();
   const endDate = dates.getEndDate();
@@ -61,9 +63,10 @@ function aggregate(data){
   console.log(result);
   const agg = AGGREGATORS[type];
   data.forEach(event => {
-    const ch = event.channel.replace(/^SIP-/, '');
+    console.log(event)
+    const ch = event['channel'].replace(/^SIP-/, '');
     const name = phoneList.nameFromChannel(ch);
-    const bucket = agg.bucket(new Date(event.timestamp))
+    const bucket = agg.bucket(new Date(event['timestamp']))
     result[name][bucket] = result[name][bucket] + 1;
   });
   console.log(result);
@@ -89,7 +92,10 @@ function getAggType(){
 }
 
 function squashChannels(data){
-  return data.map( d => d.channel = 'x');
+  return data.map( d => {
+    d['channel'] = 'x';
+    return d;
+  });
 }
 
 export {
