@@ -13,7 +13,7 @@ async function getRangeByMonth(start, end){
   console.log(urls);
   const promises = urls.map(url =>
     fetch(url).then(resp => {
-      console.log(resp);
+      // console.log(resp);
       return resp.ok ? resp.json() : [];
     })
   );
@@ -42,7 +42,14 @@ function yearMonth(date){
   return [ date.getUTCFullYear(), date.getUTCMonth() + 1];
 }
 
+// https://futel.github.io/usage/data/event-list.json
+async function getEventList(){
+  return fetch('data/event-list.json')
+        .then(resp => resp.ok ? resp.json() : []);
+}
+
 export {
   getMonth,
-  getRangeByMonth
+  getRangeByMonth,
+  getEventList
 }

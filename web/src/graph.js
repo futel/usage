@@ -2,7 +2,7 @@
 import * as dates from './dates';
 import * as dataLoader from './data-loader';
 import * as phoneList from './phone-list';
-
+import * as eventList from './event-list';
 
 async function buildAndShow(){
   const start = dates.getStartDate();
@@ -24,7 +24,8 @@ function filterToSelectedPhones(data){
 }
 
 function filterToSelectedEvents(data){
-  return data;
+  const selectedEvents = eventList.getSelectedEvents();
+  return data.filter(d => selectedEvents.includes(d.event));
 }
 
 export {

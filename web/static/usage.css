@@ -3,6 +3,14 @@ html {
 	margin: 0;
 }
 
+.dateinput {
+	width: 95%;
+}
+
 #phone-list {
+	width: 95%;
+}
+
+#event-list {
 	width: 95%;
 }
