@@ -27,7 +27,19 @@ function stringToColor(str) {
   return color;
 }
 
+function uiShow(elemId){
+  const elem = document.getElementById(elemId);
+  elem.classList.remove('visually-hidden');
+}
+
+function uiHide(elemId){
+  const elem = document.getElementById(elemId);
+  elem.classList.add('visually-hidden');
+}
+
 export {
   init,
-  stringToColor
+  stringToColor,
+  uiShow,
+  uiHide,
 };

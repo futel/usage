@@ -43,7 +43,7 @@ const AGGREGATORS = {
 // Assumes data has been pre-filtered to only the desired channels + event types
 function aggregate(data){
   const type = getAggType();
-  if(phonesCombined()){
+  if(phoneList.phonesAreCombined()){
     if(type === 'total'){
       return { 'total': data.length };
     }
@@ -51,22 +51,22 @@ function aggregate(data){
   }
 
   const result = stubZeroBuckets(type);
-  console.log(result);
+  // console.log(result);
   const agg = AGGREGATORS[type];
   data.forEach(event => {
     const ch = event['channel'].replace(/^SIP-/, '');
-    const name = phonesCombined() ? 'x' : phoneList.nameFromChannel(ch);
+    const name = phoneList.phonesAreCombined() ? 'x' : phoneList.nameFromChannel(ch);
     const bucket = agg.bucket(new Date(event['timestamp']))
     result[name][bucket] = result[name][bucket] + 1;
   });
-  console.log(result);
+  // console.log(result);
   return result;
 }
 
 function stubZeroBuckets(type){
   const startDate = dates.getStartDate();
   const endDate = dates.getEndDate();
-  const phoneNames = phonesCombined() ? ['x'] : Object.keys(phoneList.getSelectedPhones());
+  const phoneNames = phoneList.phonesAreCombined() ? ['x'] : Object.keys(phoneList.getSelectedPhones());
   return Object.fromEntries(
     phoneNames.map(phone => {
       const buckets = makeBuckets(type, startDate, endDate).map(b => [b,0]);
@@ -89,10 +89,6 @@ function makeBuckets(type, startDate, endDate){
   return result;
 }
 
-function phonesCombined(){
-  return document.getElementById('combine-phones').checked;
-}
-
 function getAggType(){
   return document.getElementById('aggregate').value;
 }
@@ -105,5 +101,6 @@ function squashChannels(data){
 }
 
 export {
-  aggregate
+  aggregate,
+  getAggType
 }

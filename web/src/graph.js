@@ -4,7 +4,7 @@ import * as dataLoader from './data-loader';
 import * as phoneList from './phone-list';
 import * as eventList from './event-list';
 import * as aggregation from './aggregation';
-import { stringToColor } from './ui';
+import { stringToColor, uiShow, uiHide } from './ui';
 import Chart from 'chart.js/auto';
 
 let chart;
@@ -24,7 +24,15 @@ async function buildAndShow(){
 }
 
 function plot(data){
-  //TODO: Handle grand TOTAL
+  uiHide('chartWrapper');
+  if(chart){
+    chart.destroy();
+  }
+  document.getElementById('totals').innerHTML = '';
+  if(aggregation.getAggType() === 'total'){
+    return showTotal(data);
+  }
+  uiShow('chartWrapper');
   const chartData = {
     labels: createLabels(data),
     datasets: createDatasets(data)
@@ -36,13 +44,33 @@ function plot(data){
     options: {}
   };
   const ctx = document.getElementById('chart').getContext('2d');
-  if(chart){
-    chart.destroy();
-  }
   chart = new Chart(
     ctx,
     config
   );
+}
+
+function showTotal(data){
+  const totalsDiv = document.getElementById('totals');
+  const table = document.createElement('table');
+  table.classList.add('fs-1')
+  totalsDiv.appendChild(table);
+  if(phoneList.phonesAreCombined()){
+    table.innerHTML = `<tr><td>Total:</td><td class='px-4'>${data['total']}</td></tr>`;
+    return;
+  }
+  Object.entries(data).forEach(p => {
+    const tr = document.createElement('tr');
+    table.appendChild(tr);
+    const name = document.createElement('td');
+    name.innerText = `${p[0]}:`;
+    tr.append(name);
+    const value = document.createElement('td');
+    value.classList.add('px-4');
+    value.innerText = p[1]['total'];
+    tr.append(value);
+  });
+  console.log(data);
 }
 
 function createDatasets(data){

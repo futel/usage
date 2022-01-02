@@ -69,10 +69,15 @@ function nameFromChannel(ch){
   return chanToName[ch];
 }
 
+function phonesAreCombined(){
+  return document.getElementById('combine-phones').checked;
+}
+
 export {
   init,
   phones,
   selectAll,
   getSelectedPhones,
-  nameFromChannel
+  nameFromChannel,
+  phonesAreCombined
 }
