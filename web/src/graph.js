@@ -59,6 +59,30 @@ function showTotal(data){
     table.innerHTML = `<tr><td>Total:</td><td class='px-4'>${data['total']}</td></tr>`;
     return;
   }
+  uiShow('chartWrapper');
+  const totals = Object.entries(Object.values(data)).map(p => p[1]['total']);
+  const chartData = {
+    labels: Object.keys(data),
+    datasets: [{
+      label: 'total',
+      borderColor: 'black',
+      borderWidth: 2,
+      backgroundColor: '#666666aa',
+      data: totals
+    }]
+  };
+  const config = {
+    type: 'bar',
+    data: chartData,
+    options: {}
+  };
+  console.log(config);
+  const ctx = document.getElementById('chart').getContext('2d');
+  chart = new Chart(
+    ctx,
+    config
+  );
+  
   Object.entries(data).forEach(p => {
     const tr = document.createElement('tr');
     table.appendChild(tr);
@@ -70,7 +94,7 @@ function showTotal(data){
     value.innerText = p[1]['total'];
     tr.append(value);
   });
-  console.log(data);
+  // console.log(data);
 }
 
 function createDatasets(data){
