@@ -15,7 +15,6 @@ const phones = {
   "paz": "645",
   "taylor": "655",
   "opensignal": "660",
-  "oskar_in": "667",
   "oskar": "668",
   "r2d2": "670",
   "ainsworth": "680",
