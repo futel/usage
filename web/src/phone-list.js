@@ -1,8 +1,8 @@
 'use strict';
 
 const phones = {
-  "tishbite": "505",
-  "jesse": "510",
+  "saratoga": "505",
+  "central": "510",
   "breckenridge": "515",
   "cesar chavez": "520",
   "hedron": "550",
@@ -11,16 +11,16 @@ const phones = {
   "souwester": "620",
   "upright": "625",
   "ypsi": "630",
-  "mykle": "640",
+  "alley27": "640",
   "paz": "645",
   "taylor": "655",
   "opensignal": "660",
   "oskar_in": "667",
   "oskar": "668",
   "r2d2": "670",
-  "xnor": "680",
+  "ainsworth": "680",
   "detroitbusco": "690",
-  "hoyt": "695",
+  "eighth": "695",
   "demo": "700"
 };
 const chanToName = Object.fromEntries(
