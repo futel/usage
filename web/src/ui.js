@@ -11,6 +11,12 @@ function init(){
     console.log('graphing it');
     graph.buildAndShow();
   }
+  document.getElementById('combine-phones').addEventListener('change', e => {
+    graph.buildAndShow();
+  });
+  document.getElementById('aggregate').addEventListener('change', e => {
+    graph.buildAndShow();
+  });
 }
 
 //attribution: https://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-javascript
