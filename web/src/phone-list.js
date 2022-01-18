@@ -1,4 +1,5 @@
 'use strict';
+const graph = require('./graph');
 
 const phones = {
   "saratoga": "505",
@@ -42,6 +43,9 @@ function init(){
     option.innerHTML = name;
     list.appendChild(option);
   });
+  list.addEventListener('change', e => {
+    graph.buildAndShow();
+  })
 }
 
 function selectAll(){

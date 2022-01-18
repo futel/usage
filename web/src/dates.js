@@ -1,13 +1,21 @@
 'use strict';
 import Litepicker from 'litepicker';
+const graph = require('./graph');
 
 let picker;
+let selectedCb;
 
 function init(){
   picker = new Litepicker({
     singleMode: false,
     element: getStartElem(),
     elementEnd: getEndElem()
+  });
+  picker.on('selected', (start,end) => {
+    if(selectedCb){
+      graph.buildAndShow();
+      selectedCb(start, end);
+    }
   });
 }
 
@@ -37,7 +45,7 @@ function setEndDate(date){
 
 // cb should consume start/end dates
 function setSelectedCb(cb){
-  picker.on('selected', cb);
+  selectedCb = cb;
 }
 
 export {

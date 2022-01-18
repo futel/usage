@@ -1,6 +1,7 @@
 'use strict';
 
 import * as dataLoader from './data-loader';
+import * as graph from './graph';
 
 async function init(){
   const events = await dataLoader.getEventList();
@@ -11,6 +12,9 @@ async function init(){
     option.value = event;
     option.innerHTML = event;
     sel.appendChild(option);
+  });
+  sel.addEventListener('change', e => {
+    graph.buildAndShow();
   });
 }
 
