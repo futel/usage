@@ -2,21 +2,16 @@
 
 import * as dataLoader from './data-loader';
 
-function init(){
-  dataLoader.getEventList()
-    .then(events => {
-      events.sort();
-      return events;
-    })
-    .then(events => {
-      const sel = document.getElementById('event-list');
-      events.forEach(event => {
-        const option = document.createElement('option');
-        option.value = event;
-        option.innerHTML = event;
-        sel.appendChild(option);
-      });
-    });
+async function init(){
+  const events = await dataLoader.getEventList();
+  events.sort();
+  const sel = document.getElementById('event-list');
+  events.forEach(event => {
+    const option = document.createElement('option');
+    option.value = event;
+    option.innerHTML = event;
+    sel.appendChild(option);
+  });
 }
 
 // Returns the selected events
@@ -31,8 +26,16 @@ function getSelectedEvents(){
   return result;
 }
 
+function selectEvents(events){
+  const sel = document.getElementById('event-list');
+  Array.prototype.forEach.call(sel.options, opt => {
+    opt.selected = events.includes(opt.value);
+  });
+}
+
 
 export {
     init,
-    getSelectedEvents
+    getSelectedEvents,
+    selectEvents
 }

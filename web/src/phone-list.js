@@ -50,6 +50,7 @@ function selectAll(){
   Array.prototype.forEach.call(sel.options, opt => {
     opt.selected = true;
   });
+  sel.dispatchEvent(new Event('change'));
 }
 
 // Returns the selected phones
@@ -72,11 +73,19 @@ function phonesAreCombined(){
   return document.getElementById('combine-phones').checked;
 }
 
+function selectChannels(channels){
+  const sel = getSelect();
+  Array.prototype.forEach.call(sel.options, opt => {
+    opt.selected = channels.includes(opt.value);
+  });
+}
+
 export {
   init,
   phones,
   selectAll,
   getSelectedPhones,
   nameFromChannel,
-  phonesAreCombined
+  phonesAreCombined,
+  selectChannels
 }
