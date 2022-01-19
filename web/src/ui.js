@@ -10,14 +10,10 @@ function init(){
     console.log('graphing it');
     graph.buildAndShow();
   }
-  document.getElementById('combine-phones').addEventListener('change', e => {
-    graph.buildAndShow();
-  });
-  document.getElementById('aggregate').addEventListener('change', e => {
-    graph.buildAndShow();
-  });
-  document.getElementById('showinactive').addEventListener('change', e => {
-    graph.buildAndShow();
+  ['combine-phones', 'aggregate', 'showinactive'].forEach(name => {
+    document.getElementById(name).addEventListener('change', e => {
+      graph.buildAndShow();
+    });
   });
 }
 
