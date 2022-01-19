@@ -51,13 +51,14 @@ function aggregate(data){
   }
 
   const result = stubZeroBuckets(type);
-  // console.log(result);
   const agg = AGGREGATORS[type];
   data.forEach(event => {
     const ch = event['channel'].replace(/^SIP-/, '');
     const name = phoneList.phonesAreCombined() ? 'x' : phoneList.nameFromChannel(ch);
     const bucket = agg.bucket(new Date(event['timestamp']))
-    result[name][bucket] = result[name][bucket] + 1;
+    if(bucket in result[name]){
+      result[name][bucket] = result[name][bucket] + 1;
+    }
   });
   // console.log(result);
   return result;
