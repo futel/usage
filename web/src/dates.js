@@ -48,11 +48,20 @@ function setSelectedCb(cb){
   selectedCb = cb;
 }
 
+function haveDateRange(){
+  const start = getStartDate();
+  const end = getEndDate();
+  return start.match(/^\d\d\d\d-\d\d-\d\d$/) &&
+         end.match(/^\d\d\d\d-\d\d-\d\d$/) &&
+         new Date(start) <= new Date(end);
+}
+
 export {
   init,
   getStartDate,
   getEndDate,
   setStartDate,
   setEndDate,
-  setSelectedCb
+  setSelectedCb,
+  haveDateRange
 };

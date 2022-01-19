@@ -10,6 +10,9 @@ import Chart from 'chart.js/auto';
 let chart;
 
 async function buildAndShow(){
+  if(!dates.haveDateRange()){
+    return console.log('NOT GRAPHING (no date range)');
+  }
   const start = dates.getStartDate();
   const end = dates.getEndDate();
   console.log(`graphing from ${start} to ${end}`);
@@ -80,7 +83,7 @@ function showTotal(data){
     ctx,
     config
   );
-  
+
   Object.entries(data).forEach(p => {
     const tr = document.createElement('tr');
     table.appendChild(tr);
