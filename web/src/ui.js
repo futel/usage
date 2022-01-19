@@ -4,7 +4,6 @@ import * as graph from './graph';
 
 function init(){
   document.getElementById('allphones').onclick = () => {
-    console.log(phoneList);
     phoneList.selectAll();
   }
   document.getElementById('graphit').onclick = () => {
@@ -15,6 +14,9 @@ function init(){
     graph.buildAndShow();
   });
   document.getElementById('aggregate').addEventListener('change', e => {
+    graph.buildAndShow();
+  });
+  document.getElementById('showinactive').addEventListener('change', e => {
     graph.buildAndShow();
   });
 }
@@ -43,9 +45,16 @@ function uiHide(elemId){
   elem.classList.add('visually-hidden');
 }
 
+// Returns true if we want to graph data for phones whose content is all zeroes
+// for the given range
+function wantInactivePhones(){
+  return document.getElementById('showinactive').checked;
+}
+
 export {
   init,
   stringToColor,
   uiShow,
   uiHide,
+  wantInactivePhones
 };
