@@ -4,7 +4,7 @@ import * as dataLoader from './data-loader';
 import * as phoneList from './phone-list';
 import * as eventList from './event-list';
 import * as aggregation from './aggregation';
-import { stringToColor, uiShow, uiHide } from './ui';
+import { stringToColor, uiShow, uiHide, wantInactivePhones } from './ui';
 import Chart from 'chart.js/auto';
 
 let chart;
@@ -20,7 +20,14 @@ async function buildAndShow(){
   data = filterToSelectedPhones(data);
   data = filterToSelectedEvents(data);
   data = aggregation.aggregate(data);
+  data = filterAllZeroPhones(data);
   console.log(data);
+  if(Object.keys(data).length === 0){
+    uiHide('chartWrapper');
+    const totalsDiv = document.getElementById('totals');
+    totalsDiv.innerHTML = '<h2>no data (nothing)</h2>';
+    return;
+  }
   plot(data);
 }
 
@@ -123,6 +130,17 @@ function filterToSelectedPhones(data){
 function filterToSelectedEvents(data){
   const selectedEvents = eventList.getSelectedEvents();
   return data.filter(d => selectedEvents.includes(d.event));
+}
+
+function filterAllZeroPhones(data){
+  if(wantInactivePhones()) return data;
+  const pairs = Object.entries(data);
+  const filtered = pairs.filter(([phone,dateToCount]) => {
+    const counts = Object.values(dateToCount);
+    const sum = counts.reduce((prev,cur) => prev + cur);
+    return sum > 0;
+  });
+  return Object.fromEntries(filtered);
 }
 
 export {
