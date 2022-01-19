@@ -13,14 +13,12 @@ async function buildAndShow(){
   const start = dates.getStartDate();
   const end = dates.getEndDate();
   console.log(`graphing from ${start} to ${end}`);
-  dataLoader.getRangeByMonth(start, end)
-    .then(filterToSelectedPhones)
-    .then(filterToSelectedEvents)
-    .then(aggregation.aggregate)
-    .then(data => {
-      console.log(data);
-      plot(data);
-    });
+  let data = await dataLoader.getRangeByMonth(start, end);
+  data = filterToSelectedPhones(data);
+  data = filterToSelectedEvents(data);
+  data = aggregation.aggregate(data);
+  console.log(data);
+  plot(data);
 }
 
 function plot(data){
