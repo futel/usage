@@ -48,8 +48,12 @@ function computeStart(end, num, suffix){
     case 'w': return new Date(end.getTime() - (num*MS_PER_WEEK));
     case 'm':
       const result = new Date(end.getTime());
-      result.setMonth(end.getMonth()-num); // oh javascript, wow
+      result.setUTCMonth(end.getUTCMonth()-num); // oh javascript, wow
       return result;
+    case 'y':
+      const yresult = new Date(end.getTime());
+      yresult.setUTCFullYear(end.getUTCFullYear()-num);
+      return yresult;
   }
 }
 
