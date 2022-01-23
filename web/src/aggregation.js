@@ -2,9 +2,7 @@
 
 const dates = require('./dates');
 import * as phoneList from './phone-list';
-
-const MS_PER_DAY = 1000 * 60 * 60 * 24;
-const pad2 = x => `${x}`.padStart(2, '0');
+import { pad2, MS_PER_DAY } from './util';
 
 const HOURLY = {
   next: d => new Date(d.getTime() +  1000 * 60 * 60),
@@ -17,7 +15,7 @@ const HOURLY = {
 };
 const DAILY = {
   next: d => addDay(d),
-  bucket: d => `${d.getUTCFullYear()}-${pad2(d.getUTCMonth()+1)}-${pad2(d.getUTCDate())}`
+  bucket: d => dates.formatUTC(d)
 }
 const MONTHLY = {
   next: d => {
@@ -41,7 +39,7 @@ const WEEKLY = {
     while(d.getUTCDay() != 0){
       d = subtractDay(d);
     }
-    return `${d.getUTCFullYear()}-${pad2(d.getUTCMonth()+1)}-${pad2(d.getUTCDate())}`
+    return dates.formatUTC(d);
   }
 }
 const TOTAL = {
