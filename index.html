@@ -15,12 +15,29 @@
         <img src="futel_logo_black.png" alt="futel" class="my-2" width=120px/>
 
         <ul class="nav flex-column">
-          <li class="nav-item fw-bold">
-            Start: <br/><input type="text" id="date-start" class="dateinput">
-          </li>
-          <li class="nav-item fw-bold">
-            End: <br/><input type="text" id="date-end" class="dateinput">
-          </li>
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="relative-tab" data-bs-toggle="tab" data-bs-target="#relative" type="button" role="tab" aria-controls="relative" aria-selected="true">Relative</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="absolute-tab" data-bs-toggle="tab" data-bs-target="#absolute" type="button" role="tab" aria-controls="absolute" aria-selected="false">Absolute</button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="relative" role="tabpanel" aria-labelledby="relative-tab">
+              Enter relative date:
+              <br/><input type="text" id="date-rel" class="p-2 my-2">
+              <br/><i>(eg. -1w or -30d, relative to now)</i>
+              <span id='reldate-err' class='text-danger'></span>
+            </div>
+            <div class="tab-pane fade" id="absolute" role="tabpanel" aria-labelledby="absolute-tab">
+              <span class="fw-bold">Start: </span>
+              <br/><input type="text" id="date-start" class="dateinput">
+              <span class="fw-bold">End: </span>
+              <br/><input type="text" id="date-end" class="dateinput">
+            </div>
+          </div>
+
           <li class="nav-item">
             <span class="fw-bold">Phones:</span>
             <button id='allphones' type="button" class="btn btn-primary my-2">all</button>
