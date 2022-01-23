@@ -1,6 +1,7 @@
 'use strict';
 import Litepicker from 'litepicker';
 const graph = require('./graph');
+import { pad2 } from './util';
 
 let picker;
 let selectedCb;
@@ -56,6 +57,10 @@ function haveDateRange(){
          new Date(start) <= new Date(end);
 }
 
+function formatUTC(d){
+  return `${d.getUTCFullYear()}-${pad2(d.getUTCMonth()+1)}-${pad2(d.getUTCDate())}`;
+}
+
 export {
   init,
   getStartDate,
@@ -63,5 +68,6 @@ export {
   setStartDate,
   setEndDate,
   setSelectedCb,
-  haveDateRange
+  haveDateRange,
+  formatUTC
 };
