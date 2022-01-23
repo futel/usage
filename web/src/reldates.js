@@ -1,12 +1,13 @@
 'use strict';
 const dates = require('./dates');
 import {MS_PER_HOUR, MS_PER_DAY, MS_PER_WEEK } from './util';
+const urlFoo = require('./url-foo');
 const graph = require('./graph');
 
 let timer;
 
 function init(){
-  const input = document.getElementById('date-rel');
+  const input = getInput();
   input.addEventListener('input', inputChanged);
 }
 
@@ -18,8 +19,12 @@ function inputChanged(e){
   timer = setTimeout(handleNewValue, 200);
 }
 
+function getInput(){
+  return document.getElementById('date-rel');
+}
+
 function handleNewValue(){
-  const value = document.getElementById('date-rel').value.trim().toLowerCase();
+  const value = getInput().value.trim().toLowerCase();
   const err = document.getElementById('reldate-err');
   err.innerText = '';
   if(!validate(value)){
@@ -32,6 +37,7 @@ function handleNewValue(){
   console.log(`relative: ${dates.formatUTC(start)} -> ${dates.formatUTC(end)}`)
   dates.setStartDate(dates.formatUTC(start));
   dates.setEndDate(dates.formatUTC(end));
+  urlFoo.updateReldate(value);
   graph.buildAndShow();
 }
 
@@ -51,6 +57,12 @@ function validate(value){
   return value.match(/^-\d+\s*[hdwmy]$/);
 }
 
+function setReldateExpr(expr){
+  getInput().value = expr;
+  handleNewValue();
+}
+
 export {
-  init
+  init,
+  setReldateExpr
 }

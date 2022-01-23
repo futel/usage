@@ -4,6 +4,7 @@ const dates = require('./dates');
 const phoneList = require('./phone-list');
 const eventList = require('./event-list');
 const graph = require('./graph');
+const reldates = require('./reldates');
 
 function init(){
   const phoneSel = document.getElementById('phone-list');
@@ -47,6 +48,10 @@ function bootstrapUrl(){
       }
     });
   }
+  const r = url.searchParams.get('r');
+  if(r){
+    return reldates.setReldateExpr(r);
+  }
   if(url.searchParams.toString()){
       graph.buildAndShow();
   }
@@ -84,6 +89,12 @@ function updateAggregation(event){
   });
 }
 
+function updateReldate(expr){
+  setOrDelete('start');
+  setOrDelete('end');
+  setOrDelete('r', expr);
+}
+
 function updateEventSelection(event){
   const events = eventList.getSelectedEvents();
   console.log(events);
@@ -91,5 +102,6 @@ function updateEventSelection(event){
 }
 
 export {
-  init
+  init,
+  updateReldate
 }
