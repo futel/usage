@@ -3,6 +3,7 @@
 const dates = require('./dates');
 import * as phoneList from './phone-list';
 
+const MS_PER_DAY = 1000 * 60 * 60 * 24;
 const pad2 = x => `${x}`.padStart(2, '0');
 
 const HOURLY = {
@@ -15,18 +16,33 @@ const HOURLY = {
   }
 };
 const DAILY = {
-  next: d => new Date(d.getTime() +  1000 * 60 * 60 * 24),
+  next: d => addDay(d),
   bucket: d => `${d.getUTCFullYear()}-${pad2(d.getUTCMonth()+1)}-${pad2(d.getUTCDate())}`
 }
 const MONTHLY = {
   next: d => {
     let result = d;
     while(result.getUTCMonth() === d.getUTCMonth()){
-      result = new Date(result.getTime() +  1000 * 60 * 60 * 24);
+      result = addDay(result);
     }
     return result;
   },
   bucket: d => `${d.getUTCFullYear()}-${pad2(d.getUTCMonth()+1)}`
+}
+const WEEKLY = {
+  next: d => {
+    let result = addDay(d);
+    while(result.getUTCDay() != 0){
+      result = addDay(result);
+    }
+    return result;
+  },
+  bucket: d => {  //weekly buckets to previous sunday
+    while(d.getUTCDay() != 0){
+      d = subtractDay(d);
+    }
+    return `${d.getUTCFullYear()}-${pad2(d.getUTCMonth()+1)}-${pad2(d.getUTCDate())}`
+  }
 }
 const TOTAL = {
   next: d => 'total',
@@ -36,8 +52,17 @@ const TOTAL = {
 const AGGREGATORS = {
   hourly: HOURLY,
   daily: DAILY,
+  weekly: WEEKLY,
   monthly: MONTHLY,
   total: TOTAL
+}
+
+function addDay(date){
+  return new Date(date.getTime() +  MS_PER_DAY);
+}
+
+function subtractDay(date){
+  return new Date(date.getTime() - MS_PER_DAY);
 }
 
 // Assumes data has been pre-filtered to only the desired channels + event types
