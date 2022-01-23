@@ -62,6 +62,7 @@ function updateDates(){
   const endDate = document.getElementById('date-end');
   setOrDelete('start', startDate.value);
   setOrDelete('end', endDate.value);
+  setOrDelete('r');
 }
 
 function setOrDelete(name, value){
