@@ -1,0 +1,1 @@
+[{"timestamp": "2022-01-29T22:51:38+00:00", "channel": "SIP-twilio-pv-termination", "event": "Hangup"}, {"timestamp": "2022-01-29T22:51:38+00:00", "channel": "SIP-twilio-pv-termination", "event": "HangupRequest"}, {"timestamp": "2022-01-29T22:58:47+00:00", "channel": "SIP-twilio-pv-termination", "event": "Hangup"}]
