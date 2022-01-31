@@ -21,7 +21,10 @@ const phones = {
   "ainsworth": "680",
   "detroitbusco": "690",
   "eighth": "695",
-  "demo": "700"
+  "demo": "700",
+  "incoming-1": "voipms",
+  "incoming-2": "twilio-termination",
+  "incoming-3": "futel.pstn.twilio.com"
 };
 const chanToName = Object.fromEntries(
   Object.entries(phones).map(x => [x[1],x[0]])
@@ -49,10 +52,18 @@ function init(){
 }
 
 function selectAll(){
+  return selectHelper((text,value) => true);
+}
+
+function selectAllIncoming(){
+  return selectHelper((text,value) => text.startsWith('incoming-'));
+}
+
+function selectHelper(predicate){
   const sel = getSelect();
   console.log(sel.options);
   Array.prototype.forEach.call(sel.options, opt => {
-    opt.selected = true;
+    opt.selected = predicate(opt.innerHTML, opt.value);
   });
   sel.dispatchEvent(new Event('change'));
 }
@@ -88,6 +99,7 @@ export {
   init,
   phones,
   selectAll,
+  selectAllIncoming,
   getSelectedPhones,
   nameFromChannel,
   phonesAreCombined,

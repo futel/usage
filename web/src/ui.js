@@ -6,6 +6,9 @@ function init(){
   document.getElementById('allphones').onclick = () => {
     phoneList.selectAll();
   }
+  document.getElementById('allincoming').onclick = () => {
+    phoneList.selectAllIncoming();
+  }
   document.getElementById('graphit').onclick = () => {
     console.log('graphing it');
     graph.buildAndShow();
