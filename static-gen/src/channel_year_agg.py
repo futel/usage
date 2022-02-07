@@ -18,7 +18,7 @@ class ChannelYearAggregator:
             self.createChannel(DataDir(channelDir))
 
     def createChannel(self, channelDir):
-        print(channelDir.dir)
+        # print(channelDir.dir)
         jsonFiles = channelDir.allJsonFiles('date')
         for jf in jsonFiles:
             jf = pathlib.Path(jf)
@@ -28,17 +28,18 @@ class ChannelYearAggregator:
 
     def createYear(self, channelDir,  yearFile):
         year = re.match('^(\d\d\d\d).json$', yearFile.name)[1]
-        print("\nAggregating {} from {}".format(year, yearFile.resolve()))
+        print("Aggregating {} from {}".format(year, yearFile.resolve()))
         events = fs_util.read_all_events(yearFile)
         byDate = self._byDate(events)
         totals = self._totals(events)
-        latest = self._latestByEvent(events)
-        completeLatest = self._completeLatest(latest)
-        agg = { 'by_day': byDate, 'totals': totals, 'latest': latest,
-                'complete_latest': completeLatest}
+        recent = self._recent(events)
+        mostRecent = self._mostRecent(recent)
+        agg = { 'by_day': byDate, 'totals': totals, 'recent': recent,
+                'most_recent': mostRecent}
         filename = channelDir.dir / 'date' / "{}_agg.json".format(year)
         with open(filename, 'w') as f:
             json.dump(agg, f)
+        print("  wrote {}".format(filename))
 
     def _byDate(self, events):
         agg = dict()
@@ -61,7 +62,7 @@ class ChannelYearAggregator:
             agg[eventName] += 1
         return agg
 
-    def _latestByEvent(self, events):
+    def _recent(self, events):
         agg = dict()
         for event in events:
             timestamp = event['timestamp']
@@ -72,10 +73,10 @@ class ChannelYearAggregator:
                 agg[eventName] = timestamp
         return agg
 
-    def _completeLatest(self, latest):
-        completeLatest = {'event': 'bs', 'timestamp': EPOCH}
-        for event,timestamp in latest.items():
-            if timestamp > completeLatest['timestamp']:
-                completeLatest['event'] = event
-                completeLatest['timestamp'] = timestamp
-        return completeLatest
+    def _mostRecent(self, recent):
+        mostRecent = {'event': 'bs', 'timestamp': EPOCH}
+        for event,timestamp in recent.items():
+            if timestamp > mostRecent['timestamp']:
+                mostRecent['event'] = event
+                mostRecent['timestamp'] = timestamp
+        return mostRecent
