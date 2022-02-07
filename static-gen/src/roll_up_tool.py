@@ -6,7 +6,7 @@ from functools import reduce
 
 # does all the roll ups (data combining)
 
-class RollupTool:
+class RollUpTool:
 
     def __init__(self, dir):
         self.dir = DataDir(dir)
