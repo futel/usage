@@ -4,9 +4,9 @@ import fs_util
 import json
 from functools import reduce
 
-# does all the aggregation
+# does all the roll ups (data combining)
 
-class Aggregator:
+class RollupTool:
 
     def __init__(self, dir):
         self.dir = DataDir(dir)
@@ -36,7 +36,7 @@ class Aggregator:
         yearDirs = chDir.getDateYears()
         [self._rollUpYear(y) for y in yearDirs]
 
-    # aggregattes a single year, which includes aggregating all
+    # rolls up (combines) a single year, which includes combining all
     # months that exist for that year
     def _rollUpYear(self, yearDir):
         monthDirs = self.dir.getSubdirs(yearDir)
