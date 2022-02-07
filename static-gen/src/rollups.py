@@ -1,6 +1,6 @@
 
 import sys
-from aggregator import Aggregator
+from roll_up_tool import RollUpTool
 import event_list
 
 # Recomputes aggregated roll-up data in the data dir
@@ -10,12 +10,12 @@ if len(sys.argv) < 2:
     sys.exit(-1)
 
 indir = sys.argv[1]
-print("Aggregating roll-ups in {}".format(indir))
+print("Creating roll-ups in {}".format(indir))
 
-agg = Aggregator(indir)
-agg.rollUpDates()
-agg.rollUpChannels()
-agg.rollUpEvents()
+roll = RollUpTool(indir)
+roll.rollUpDates()
+roll.rollUpChannels()
+roll.rollUpEvents()
 
 event_list.write_events(indir)
 

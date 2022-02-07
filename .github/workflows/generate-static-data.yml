@@ -35,6 +35,8 @@ jobs:
       run: rsync -avv static-gen/build/ gh-pages/data/ && rm -rf static-gen/build
     - name: generate rollups
       run: python static-gen/src/rollups.py gh-pages/data/
+    - name: build aggregations rollups
+      run: python static-gen/src/aggregate.py gh-pages/data/
     - name: debug peek in the data directory
       run: ls -l gh-pages && ls -l gh-pages/data
     - name: commit updated data
