@@ -1,1 +1,1 @@
-[{"timestamp": "2022-02-12T03:09:43+00:00", "channel": "SIP-670", "event": "Hangup"}]
+[{"timestamp": "2022-02-12T03:09:43+00:00", "channel": "SIP-670", "event": "Hangup"}, {"timestamp": "2022-02-12T04:52:11+00:00", "channel": "SIP-670", "event": "HangupRequest"}, {"timestamp": "2022-02-12T04:52:12+00:00", "channel": "SIP-670", "event": "Hangup"}, {"timestamp": "2022-02-12T07:08:53+00:00", "channel": "SIP-670", "event": "Hangup"}]
