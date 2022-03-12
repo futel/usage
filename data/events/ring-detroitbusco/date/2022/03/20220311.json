@@ -1,1 +1,1 @@
-[{"timestamp": "2022-03-11T14:55:40+00:00", "channel": "SIP-futel.pstn.twilio.com", "event": "ring-detroitbusco"}]
+[{"timestamp": "2022-03-11T14:55:40+00:00", "channel": "SIP-futel.pstn.twilio.com", "event": "ring-detroitbusco"}, {"timestamp": "2022-03-11T20:47:02+00:00", "channel": "SIP-twilio-origination-4", "event": "ring-detroitbusco"}]
