@@ -1,0 +1,1 @@
+[{"timestamp": "2022-03-24T01:02:41+00:00", "channel": "SIP-510", "event": "outgoing-dialstatus-ANSWER"}, {"timestamp": "2022-03-24T01:06:01+00:00", "channel": "SIP-510", "event": "outgoing-dialstatus-ANSWER"}, {"timestamp": "2022-03-24T03:12:14+00:00", "channel": "SIP-630", "event": "outgoing-dialstatus-ANSWER"}]
