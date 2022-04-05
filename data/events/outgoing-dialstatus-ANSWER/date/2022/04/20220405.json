@@ -1,1 +1,1 @@
-[{"timestamp": "2022-04-05T01:06:14+00:00", "channel": "SIP-630", "event": "outgoing-dialstatus-ANSWER"}, {"timestamp": "2022-04-05T02:55:18+00:00", "channel": "SIP-630", "event": "outgoing-dialstatus-ANSWER"}]
+[{"timestamp": "2022-04-05T01:06:14+00:00", "channel": "SIP-630", "event": "outgoing-dialstatus-ANSWER"}, {"timestamp": "2022-04-05T02:55:18+00:00", "channel": "SIP-630", "event": "outgoing-dialstatus-ANSWER"}, {"timestamp": "2022-04-05T05:46:21+00:00", "channel": "SIP-630", "event": "outgoing-dialstatus-ANSWER"}]
