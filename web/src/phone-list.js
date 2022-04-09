@@ -6,6 +6,7 @@ const phones = {
   "central": "510",
   "breckenridge": "515",
   "cesar chavez": "520",
+  "sjac": "535",
   "hedron": "550",
   "clinton": "610",
   "robotron": "615",
