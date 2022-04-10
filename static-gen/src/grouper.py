@@ -5,6 +5,7 @@ import re
 
 def parse_timestamp(ts):
     ts = re.sub(r'Z$', r'+00:00', ts)
+    ts = re.sub(r',\d\d\d', '', ts)
     return datetime.fromisoformat(ts)
 
 def by_channel(events):
