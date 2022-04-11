@@ -1,1 +1,1 @@
-[{"timestamp": "2022-04-03T23:43:19+00:00", "channel": "SIP-twilio-termination", "event": "ring-ypsi"}]
+[{"timestamp": "2022-04-03T16:43:19-08:00", "channel": "SIP-twilio-termination", "event": "ring-ypsi"}, {"timestamp": "2022-04-03T23:43:19+00:00", "channel": "SIP-twilio-termination", "event": "ring-ypsi"}]
