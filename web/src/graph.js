@@ -123,7 +123,7 @@ function createLabels(data){
 
 function filterToSelectedPhones(data){
   const selectedPhones = phoneList.getSelectedPhones();
-  const wanted = Object.values(selectedPhones).map(v => `SIP-${v}`);
+  const wanted = Object.values(selectedPhones).flatMap(v => [`SIP-${v}`, `PJSIP-${v}`]);
   return data.filter(d => wanted.includes(d.channel));
 }
 
