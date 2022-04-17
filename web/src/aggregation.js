@@ -76,7 +76,7 @@ function aggregate(data){
   const result = stubZeroBuckets(type);
   const agg = AGGREGATORS[type];
   data.forEach(event => {
-    const ch = event['channel'].replace(/^SIP-/, '');
+    const ch = event['channel'].replace(/^(PJ)?SIP-/, '');
     const name = phoneList.phonesAreCombined() ? 'x' : phoneList.nameFromChannel(ch);
     const bucket = agg.bucket(new Date(event['timestamp']))
     if(bucket in result[name]){
