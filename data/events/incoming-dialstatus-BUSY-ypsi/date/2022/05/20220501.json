@@ -1,0 +1,1 @@
+[{"timestamp": "2022-05-01T10:44:38+00:00", "channel": "SIP-twilio-origination-2", "event": "incoming-dialstatus-BUSY-ypsi"}, {"timestamp": "2022-05-01T10:44:50+00:00", "channel": "SIP-twilio-termination", "event": "incoming-dialstatus-BUSY-ypsi"}, {"timestamp": "2022-05-01T10:45:02+00:00", "channel": "SIP-twilio-origination-2", "event": "incoming-dialstatus-BUSY-ypsi"}]
