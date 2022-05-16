@@ -1,1 +1,1 @@
-[{"timestamp": "2022-05-16T00:41:48+00:00", "channel": "SIP-twilio-termination", "event": "Hangup"}]
+[{"timestamp": "2022-05-16T00:41:48+00:00", "channel": "SIP-twilio-termination", "event": "Hangup"}, {"timestamp": "2022-05-16T08:22:10+00:00", "channel": "SIP-twilio-termination", "event": "Hangup"}, {"timestamp": "2022-05-16T09:18:41+00:00", "channel": "SIP-twilio-termination", "event": "Hangup"}]
