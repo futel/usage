@@ -17,6 +17,7 @@ async function buildAndShow(){
   const end = dates.getEndDate();
   console.log(`graphing from ${start} to ${end}`);
   let data = await dataLoader.getRangeByMonth(start, end);
+  data = stripUnwantedMilliseconds(data);
   data = filterToSelectedPhones(data);
   data = filterToSelectedEvents(data);
   data = aggregation.aggregate(data);
@@ -119,6 +120,13 @@ function createDatasets(data){
 function createLabels(data){
   const firstEntry = Object.entries(data)[0];
   return Object.keys(firstEntry[1]);
+}
+
+function stripUnwantedMilliseconds(data){
+  return data.map(d => {
+    d.timestamp = d.timestamp.replace(/,\d\d\d/, '');
+    return d;
+  });
 }
 
 function filterToSelectedPhones(data){
