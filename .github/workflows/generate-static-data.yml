@@ -17,7 +17,7 @@ jobs:
     - name: copy data from gh-pages branch
       run: |
         rsync -avv gh-pages/data/ static-gen/data/
-    - uses: actions/setup-python@v2
+    - uses: actions/setup-python@v3
       with:
         python-version: '3.x'
     - name: install deps
