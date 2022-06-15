@@ -1,1 +1,1 @@
-[{"timestamp": "2022-06-15T01:15:02+00:00", "channel": "SIP-voipms", "event": "default-incoming"}, {"timestamp": "2022-06-15T07:45:48+00:00", "channel": "SIP-voipms", "event": "default-incoming"}]
+[{"timestamp": "2022-06-15T01:15:02+00:00", "channel": "SIP-voipms", "event": "default-incoming"}, {"timestamp": "2022-06-15T07:45:48+00:00", "channel": "SIP-voipms", "event": "default-incoming"}, {"timestamp": "2022-06-15T15:30:22+00:00", "channel": "SIP-twilio-origination-4", "event": "default-incoming"}]
