@@ -1,1 +1,1 @@
-[{"timestamp": "2022-06-22T03:10:50+00:00", "channel": "SIP-twilio-origination-4", "event": "ring-breckenridgest"}]
+[{"timestamp": "2022-06-22T03:10:50+00:00", "channel": "SIP-twilio-origination-4", "event": "ring-breckenridgest"}, {"timestamp": "2022-06-22T05:48:55+00:00", "channel": "SIP-twilio-termination", "event": "ring-breckenridgest"}, {"timestamp": "2022-06-22T05:49:10+00:00", "channel": "SIP-twilio-origination-1", "event": "ring-breckenridgest"}, {"timestamp": "2022-06-22T05:50:45+00:00", "channel": "SIP-twilio-origination-4", "event": "ring-breckenridgest"}]
