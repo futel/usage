@@ -1,1 +1,1 @@
-[{"timestamp": "2022-05-17T18:49:02+00:00", "channel": "SIP-futel.pstn.twilio.com", "event": "incoming-dialstatus-CHANUNAVAIL-eighth"}]
+[{"timestamp": "2022-05-17T18:49:02+00:00", "channel": "SIP-futel.pstn.twilio.com", "event": "incoming-dialstatus-CHANUNAVAIL-eighth"}, {"timestamp": "2022-06-30T21:11:55+00:00", "channel": "SIP-futel.pstn.twilio.com", "event": "incoming-dialstatus-CHANUNAVAIL-eighth"}, {"timestamp": "2022-06-30T21:12:10+00:00", "channel": "SIP-futel.pstn.twilio.com", "event": "incoming-dialstatus-CHANUNAVAIL-eighth"}]
