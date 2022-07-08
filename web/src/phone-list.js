@@ -2,12 +2,12 @@
 const graph = require('./graph');
 
 const phones = {
-  "saratoga": "505",
-  "central": "510",
-  "breckenridge": "515",
-  "cesar chavez": "520",
-  "sjac": "535",
+  "saratoga": "405",
   "hedron": "440",
+  "central": "410",
+  "breckenridge": "415",
+  "cesar chavez": "420",
+  "sjac": "435",
   "clinton": "610",
   "robotron": "615",
   "souwester": "620",
