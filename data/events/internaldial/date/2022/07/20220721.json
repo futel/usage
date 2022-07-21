@@ -1,1 +1,1 @@
-[{"timestamp": "2022-07-21T02:25:05+00:00", "channel": "SIP-440", "event": "internaldial"}, {"timestamp": "2022-07-21T02:27:53+00:00", "channel": "SIP-440", "event": "internaldial"}]
+[{"timestamp": "2022-07-21T02:25:05+00:00", "channel": "SIP-440", "event": "internaldial"}, {"timestamp": "2022-07-21T02:27:53+00:00", "channel": "SIP-440", "event": "internaldial"}, {"timestamp": "2022-07-21T10:37:52+00:00", "channel": "SIP-655", "event": "internaldial"}, {"timestamp": "2022-07-21T12:40:43+00:00", "channel": "SIP-655", "event": "internaldial"}]
