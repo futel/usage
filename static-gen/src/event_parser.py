@@ -14,7 +14,7 @@ def parse(line):
 def fix_channel(event):
     result = dict(event)
     # Normalize PJSIP/630-00000000 to PJSIP-630
-    result['channel'] = re.sub(r'(SIP).(.*)(-.*', r'\1-\2', result['channel'])
+    result['channel'] = re.sub(r'(SIP).(.*)-.*', r'\1-\2', result['channel'])
     # Normalize PJSIP/640 to PJSIP_640
     result['channel'] = re.sub(r'(SIP).(\d+)$', r'\1-\2', result['channel'])
     return result
