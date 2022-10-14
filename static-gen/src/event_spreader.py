@@ -12,6 +12,7 @@ def events_channel(grouped_events):
         outdir = filenames.build_event_channel_dir(event_name)
         fs_util.mkdir_safe(outdir)
         for channel, events in by_channel.items():
+            print("DEBUG: outdir = {} channel = {}".format("outdir, channel"))
             event_writer.blend_event_channel(event_name, channel, events)
             # print("{} -> {}".format(channel,events))
 
