@@ -14,7 +14,9 @@ class RollUpTool:
     def rollUpDates(self):
         years = self.dir.getDateYears()
         print(years)
-        [self._rollUpYear(y) for y in years]
+        # 2022-11-13 disabling year rollup (too huge)
+        print('Skipping year rollups because they are too huge now.')
+        # [self._rollUpYear(y) for y in years]
 
     def rollUpChannels(self):
         channelDirs = self.dir.getChannelDirs()

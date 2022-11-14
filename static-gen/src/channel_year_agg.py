@@ -23,23 +23,24 @@ class ChannelYearAggregator:
         for jf in jsonFiles:
             jf = pathlib.Path(jf)
             if re.match('^\d\d\d\d.json$', jf.name):
-                self.createYear(channelDir, jf)
+                print("Skipping year {} aggregation (too big!)".format(jf.name))
+                # self.createYear(channelDir, jf)
 
 
-    def createYear(self, channelDir,  yearFile):
-        year = re.match('^(\d\d\d\d).json$', yearFile.name)[1]
-        print("Aggregating {} from {}".format(year, yearFile.resolve()))
-        events = fs_util.read_all_events(yearFile)
-        byDate = self._byDate(events)
-        totals = self._totals(events)
-        recent = self._recent(events)
-        mostRecent = self._mostRecent(recent)
-        agg = { 'by_day': byDate, 'totals': totals, 'recent': recent,
-                'most_recent': mostRecent}
-        filename = channelDir.dir / 'date' / "{}_agg.json".format(year)
-        with open(filename, 'w') as f:
-            json.dump(agg, f)
-        print("  wrote {}".format(filename))
+    # def createYear(self, channelDir,  yearFile):
+    #     year = re.match('^(\d\d\d\d).json$', yearFile.name)[1]
+    #     print("Aggregating {} from {}".format(year, yearFile.resolve()))
+    #     events = fs_util.read_all_events(yearFile)
+    #     byDate = self._byDate(events)
+    #     totals = self._totals(events)
+    #     recent = self._recent(events)
+    #     mostRecent = self._mostRecent(recent)
+    #     agg = { 'by_day': byDate, 'totals': totals, 'recent': recent,
+    #             'most_recent': mostRecent}
+    #     filename = channelDir.dir / 'date' / "{}_agg.json".format(year)
+    #     with open(filename, 'w') as f:
+    #         json.dump(agg, f)
+    #     print("  wrote {}".format(filename))
 
     def _byDate(self, events):
         agg = dict()
