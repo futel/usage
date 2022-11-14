@@ -8,6 +8,6 @@ import event_parser
 
 def update_all(lines):
     events = event_parser.parseAll(lines)
-    event_spreader.by_event(events)
     date_spreader.by_date(events)
-    channel_spreader.by_channel(events)
+    # event_spreader.by_event(events)
+    # channel_spreader.by_channel(events)
