@@ -14,9 +14,7 @@ class RollUpTool:
     def rollUpDates(self):
         years = self.dir.getDateYears()
         print(years)
-        # 2022-11-13 disabling year rollup (too huge)
-        print('Skipping year rollups because they are too huge now.')
-        # [self._rollUpYear(y) for y in years]
+        [self._rollUpYear(y) for y in years]
 
     def rollUpChannels(self):
         channelDirs = self.dir.getChannelDirs()
@@ -43,11 +41,13 @@ class RollUpTool:
     def _rollUpYear(self, yearDir):
         monthDirs = self.dir.getSubdirs(yearDir)
         [self._rollUpMonth(m) for m in monthDirs]
-        allMonthFiles = self.dir.allJsonFiles(yearDir)
-        yearData = self._combine(allMonthFiles)
-        yearFile = str(yearDir) + '.json'
-        print("Year: {}".format(yearFile))
-        fs_util.write_all_events(yearFile, yearData)
+        # 2022-11-16 disabling year rollup (too huge)
+        print('Skipping year rollups because they are too huge now.')
+        # allMonthFiles = self.dir.allJsonFiles(yearDir)
+        # yearData = self._combine(allMonthFiles)
+        # yearFile = str(yearDir) + '.json'
+        # print("Year: {}".format(yearFile))
+        # fs_util.write_all_events(yearFile, yearData)
 
     def _rollUpMonth(self, monthDir):
         print("Rolling up {}".format(monthDir))
