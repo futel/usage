@@ -14,8 +14,8 @@ print("Creating roll-ups in {}".format(indir))
 
 roll = RollUpTool(indir)
 roll.rollUpDates()
-roll.rollUpChannels()
-roll.rollUpEvents()
+# roll.rollUpChannels()
+# roll.rollUpEvents()
 
 event_list.write_events(indir)
 
