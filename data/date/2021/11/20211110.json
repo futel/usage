@@ -1,0 +1,1 @@
+[{"timestamp": "2021-11-10T23:39:01.165Z", "channel": "SIP-702", "event": "SoftHangupRequest"}, {"timestamp": "2021-11-10T23:40:59.106Z", "channel": "SIP-702", "event": "SoftHangupRequest"}, {"timestamp": "2021-11-10T23:43:32.639Z", "channel": "SIP-510", "event": "Hangup"}]
