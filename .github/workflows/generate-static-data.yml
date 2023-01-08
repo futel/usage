@@ -47,6 +47,6 @@ jobs:
       with:
         add: 'data'
         cwd: './gh-pages'
-        branch: 'gh-pages'
+        # branch: 'gh-pages'
         message: 'updated static data'
         pathspec_error_handling: exitImmediately
