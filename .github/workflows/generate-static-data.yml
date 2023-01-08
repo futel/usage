@@ -43,7 +43,7 @@ jobs:
     - name: debug peek in the data directory
       run: ls -l gh-pages && ls -l gh-pages/data
     - name: commit updated data
-      uses: EndBug/add-and-commit@v7
+      uses: EndBug/add-and-commit@v9
       with:
         add: 'data'
         cwd: './gh-pages'
