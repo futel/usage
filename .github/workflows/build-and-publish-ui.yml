@@ -9,7 +9,7 @@ jobs:
   build-web-ui:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - uses: actions/setup-node@v2
     - run: npm install
       working-directory: ./web
@@ -17,7 +17,7 @@ jobs:
       run: npm run build
       working-directory: ./web
     - name: checkout gh-pages
-      uses: actions/checkout@v2.3.4
+      uses: actions/checkout@v3
       with:
         ref: gh-pages
         path: gh-pages

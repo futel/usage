@@ -8,16 +8,16 @@ jobs:
   static-gen:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: checkout
-      uses: actions/checkout@v2.3.4
+      uses: actions/checkout@v3
       with:
         ref: gh-pages
         path: gh-pages
     - name: copy data from gh-pages branch
       run: |
         rsync -avv gh-pages/data/ static-gen/data/
-    - uses: actions/setup-python@v3
+    - uses: actions/setup-python@v4
       with:
         python-version: '3.x'
     - name: install deps
