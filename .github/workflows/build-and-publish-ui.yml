@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
     - run: npm install
       working-directory: ./web
     - name: build web ui
@@ -25,7 +25,7 @@ jobs:
       run: |
         rsync -avv web/dist/ gh-pages/
     - name: commit updated data
-      uses: EndBug/add-and-commit@v7
+      uses: EndBug/add-and-commit@v9
       with:
         add: '.'
         cwd: './gh-pages'
