@@ -29,6 +29,6 @@ jobs:
       with:
         add: '.'
         cwd: './gh-pages'
-        branch: 'gh-pages'
+        # branch: 'gh-pages'
         message: 'publishing web ui to gh-pages'
         pathspec_error_handling: exitImmediately
