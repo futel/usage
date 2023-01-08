@@ -27,7 +27,7 @@ class DataDir:
             dirs = map(lambda x: self.dir / subdirRoot / x, dirs)
             return list(dirs)
 
-    def dateYearMonthDir(self, root, year, month):
+    def dateYearMonthDir(self, year, month):
         return self.yearMonthDir(self.getDateDir(), year, month)
 
     def yearMonthDir(self, root, year, month):

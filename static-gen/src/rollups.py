@@ -1,7 +1,6 @@
 
 import sys
 from roll_up_tool import RollUpTool
-import event_list
 
 # Recomputes aggregated roll-up data in the data dir
 
@@ -14,9 +13,9 @@ print("Creating roll-ups in {}".format(indir))
 
 roll = RollUpTool(indir)
 roll.rollUpDates()
+
+# Skip rolling up channels and events because we only use date now really
 # roll.rollUpChannels()
 # roll.rollUpEvents()
-
-event_list.write_events(indir)
 
 print("All done.")

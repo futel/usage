@@ -37,6 +37,8 @@ jobs:
       run: python static-gen/src/rollups.py gh-pages/data/
     - name: build aggregations rollups
       run: python static-gen/src/aggregate.py gh-pages/data/
+    - name: update unique event list
+      run: python static-gen/src/event_list.py gh-pages/data/
     - name: debug peek in the data directory
       run: ls -l gh-pages && ls -l gh-pages/data
     - name: commit updated data
