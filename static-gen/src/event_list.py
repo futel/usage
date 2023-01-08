@@ -1,4 +1,5 @@
 import sys
+from os import path
 import json
 import datetime
 from datetime import date
@@ -19,6 +20,8 @@ def write_events(dir, events):
 def get_event_names_for_date(dir, targetDate):
     year_month_dir = dir.dateYearMonthDir(targetDate.year, targetDate.month)
     file = year_month_dir / targetDate.strftime("%Y%m%d.json")
+    if not path.exists(file):
+        return set()
     with open(file, 'r') as file:
         data = json.load(file)
         return set(map(lambda event: event['event'], data))
@@ -42,7 +45,7 @@ if __name__ == "__main__":
     dir = DataDir(indir)
 
     events = read_events(dir.dir)
-    print(json.dumps(sorted(events)))
+    # print(json.dumps(sorted(events)))
     latest_events = read_past_events(dir)
 
     all = set(events)
