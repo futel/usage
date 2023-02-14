@@ -24,6 +24,7 @@ const phones = {
   "detroitbusco": "690",
   "eighth": "695",
   "demo": "700",
+  "twilio-test": "+19713512383",
   "incoming-1": "voipms",
   "incoming-2": "twilio-termination",
   "incoming-3": "futel.pstn.twilio.com"
