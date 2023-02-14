@@ -129,12 +129,15 @@ function stripUnwantedMilliseconds(data){
   });
 }
 
+// Return a copy of data filtered to values which map to phoneList selected values.
+// Values are mapped by prefixing 'SIP-', 'PJSIP-', or nothing.
 function filterToSelectedPhones(data){
   const selectedPhones = phoneList.getSelectedPhones();
-  const wanted = Object.values(selectedPhones).flatMap(v => [`SIP-${v}`, `PJSIP-${v}`]);
+  const wanted = Object.values(selectedPhones).flatMap(v => [v, `SIP-${v}`, `PJSIP-${v}`]);
   return data.filter(d => wanted.includes(d.channel));
 }
 
+// Return a copy of data filtered to eventList selected values.
 function filterToSelectedEvents(data){
   const selectedEvents = eventList.getSelectedEvents();
   return data.filter(d => selectedEvents.includes(d.event));
