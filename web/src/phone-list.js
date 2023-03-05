@@ -7,7 +7,7 @@ const phones = {
   "central": "410",
   "breckenridge": "415",
   "cesar chavez": "420",
-  "sjac": "435",
+  "sjac-old": "435",
   "microcosm": "445",
   "clinton": "610",
   "robotron": "615",
@@ -24,8 +24,8 @@ const phones = {
   "detroitbusco": "690",
   "eighth": "695",
   "demo": "700",
+  "sjac": "sjac",
   "twilio": "twilio",    
-  "twilio-test": "+19713512383",
   "incoming-1": "voipms",
   "incoming-2": "twilio-termination",
   "incoming-3": "futel.pstn.twilio.com"
