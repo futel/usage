@@ -24,6 +24,7 @@ const phones = {
   "detroitbusco": "690",
   "eighth": "695",
   "demo": "700",
+  "ghost-mountain": "ghost-mountain",
   "r2d2": "r2d2",    
   "sjac": "sjac",
   "twilio": "twilio",    
