@@ -18,6 +18,7 @@ async function buildAndShow(){
   console.log(`graphing from ${start} to ${end}`);
   let data = await dataLoader.getRangeByMonth(start, end);
   data = stripUnwantedMilliseconds(data);
+  data = normalizeEndpoint(data);
   data = filterToSelectedPhones(data);
   data = filterToSelectedEvents(data);
   data = aggregation.aggregate(data);
@@ -129,12 +130,22 @@ function stripUnwantedMilliseconds(data){
   });
 }
 
+function normalizeEndpoint(data){
+  return data.map(d => {
+    if(Object.hasOwn(d, 'endpoint')) {
+      return d;
+    }
+    d.endpoint = d.channel;
+    return d;
+  });
+}
+
 // Return a copy of data filtered to values which map to phoneList selected values.
 // Values are mapped by prefixing 'SIP-', 'PJSIP-', or nothing.
 function filterToSelectedPhones(data){
   const selectedPhones = phoneList.getSelectedPhones();
   const wanted = Object.values(selectedPhones).flatMap(v => [v, `SIP-${v}`, `PJSIP-${v}`]);
-  return data.filter(d => wanted.includes(d.channel));
+  return data.filter(d => wanted.includes(d.endpoint));
 }
 
 // Return a copy of data filtered to eventList selected values.
