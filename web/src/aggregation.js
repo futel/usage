@@ -63,20 +63,20 @@ function subtractDay(date){
   return new Date(date.getTime() - MS_PER_DAY);
 }
 
-// Assumes data has been pre-filtered to only the desired channels + event types
+// Assumes data has been pre-filtered to only the desired endpoints + event types
 function aggregate(data){
   const type = getAggType();
   if(phoneList.phonesAreCombined()){
     if(type === 'total'){
       return { 'total': data.length };
     }
-    data = squashChannels(data);
+    data = squashEndpoints(data);
   }
 
   const result = stubZeroBuckets(type);
   const agg = AGGREGATORS[type];
   data.forEach(event => {
-    const ch = event['channel'].replace(/^(PJ)?SIP-/, '');
+    const ch = event['endpoint'].replace(/^(PJ)?SIP-/, '');
     const name = phoneList.phonesAreCombined() ? 'x' : phoneList.nameFromChannel(ch);
     const bucket = agg.bucket(new Date(event['timestamp']))
     if(bucket in result[name]){
@@ -117,9 +117,9 @@ function getAggType(){
   return document.getElementById('aggregate').value;
 }
 
-function squashChannels(data){
+function squashEndpoints(data){
   return data.map( d => {
-    d['channel'] = 'x';
+    d['endpoint'] = 'x';
     return d;
   });
 }
