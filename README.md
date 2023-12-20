@@ -11,4 +11,5 @@ https://futel.github.io/usage/
 
 testing with a small grafana instance as an alternative
 
-
+* `docker volume create grafana-storage` - create a volume
+* docker-compose up

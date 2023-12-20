@@ -14,6 +14,8 @@ services:
     restart: unless-stopped
     ports:
       - '3100:3100'
+	volumes:
+      - /root/loki-config.yaml:/etc/loki/local-config.yaml
 volumes:
   grafana-storage: {}
 
