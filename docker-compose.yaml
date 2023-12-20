@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - '7744:3000'
+    volumes:
+      - grafana-storage:/var/lib/grafana
+  loki:
+    image: grafana/loki
+    container_name: loki
+    restart: unless-stopped
+    ports:
+      - '3100:3100'
+volumes:
+  grafana-storage: {}
+
