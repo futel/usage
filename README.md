@@ -47,6 +47,13 @@ curl -i -H 'Content-Type: application/json' -X POST --data-binary @/tmp/test3.js
 
 and you'll get a 204 no content
 
+To get a "real" file understood by `send_file.py`:
+
+```
+wget https://raw.githubusercontent.com/futel/usage/gh-pages/data/date/2023/12/20231223.json
+```
+(change date to meet needs)
+
 
 ## query/dashboard
 
