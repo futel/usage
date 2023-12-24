@@ -1,0 +1,672 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "c431642d-109a-4544-92dc-9918dda9a07a"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "smooth",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "10.2.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "c431642d-109a-4544-92dc-9918dda9a07a"
+          },
+          "editorMode": "builder",
+          "expr": "count_over_time({label=\"futel-events\"} |= `PJSIP-445` | json | drop batch, channel, label, timestamp | event != `contact-status-Avail` [$__auto])",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "Microcosm events",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "valueLabel": "event"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "c431642d-109a-4544-92dc-9918dda9a07a"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "fillOpacity": 80,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineWidth": 1,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 5,
+      "options": {
+        "barRadius": 0,
+        "barWidth": 0.97,
+        "fullHighlight": false,
+        "groupWidth": 0.7,
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "orientation": "horizontal",
+        "showValue": "auto",
+        "stacking": "none",
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        },
+        "xTickLabelRotation": 0,
+        "xTickLabelSpacing": 0
+      },
+      "pluginVersion": "10.2.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "c431642d-109a-4544-92dc-9918dda9a07a"
+          },
+          "editorMode": "code",
+          "expr": "count_over_time({label=\"futel-events\"} |= `` | json \n| label_format chan=`{{ Replace .channel \"PJSIP-\" \"\" -1 }}` | label_format chan=`{{ .chan | replace \"445\" \"microcosm\"}}` | label_format chan=`{{ .chan | replace \"416\" \"breckenridge-pers\"}}` | label_format chan=`{{ .chan | replace \"410\" \"central\"}}` | label_format chan=`{{ .chan | replace \"615\" \"robotron\"}}` | label_format chan=`{{ .chan | replace \"655\" \"taylor\"}}` | label_format chan=`{{ .chan | replace \"695\" \"eighth\"}}` | label_format chan=`{{ .chan | replace \"620\" \"sowester\"}}` | label_format chan=`{{ .chan | replace \"625\" \"upright\"}}` | label_format chan=`{{ .chan | replace \"415\" \"breckenridge\"}}` | label_format chan=`{{ .chan | replace \"640\" \"alley27\"}}` | label_format chan=`{{ .chan | replace \"630\" \"ypsi\"}}` | label_format chan=`{{ .chan | replace \"680\" \"ainsworth\"}}` | label_format chan=`{{ .chan | replace \"405\" \"saratoga\"}}` \n| event != `contact-status-Avail` | __error__=`` | drop Time,batch,channel,label,timestamp,event [$__auto])",
+          "queryType": "instant",
+          "refId": "A"
+        }
+      ],
+      "title": "Events (not contact-status-Avail)",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "valueLabel": "chan"
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "c431642d-109a-4544-92dc-9918dda9a07a"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "__systemRef": "hideSeriesFrom",
+            "matcher": {
+              "id": "byNames",
+              "options": {
+                "mode": "exclude",
+                "names": [
+                  "microcosm"
+                ],
+                "prefix": "All except:",
+                "readOnly": true
+              }
+            },
+            "properties": [
+              {
+                "id": "custom.hideFrom",
+                "value": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": true
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 8
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "c431642d-109a-4544-92dc-9918dda9a07a"
+          },
+          "editorMode": "code",
+          "expr": "count_over_time({label=\"futel-events\"} |= `` | json channel=\"channel\", event=\"event\" | label_format chan=`{{ Replace .channel \"PJSIP-\" \"\" -1 }}` | label_format chan=`{{ .chan | replace \"445\" \"microcosm\"}}` | label_format chan=`{{ .chan | replace \"410\" \"central\"}}` | label_format chan=`{{ .chan | replace \"615\" \"robotron\"}}` | label_format chan=`{{ .chan | replace \"655\" \"taylor\"}}` | label_format chan=`{{ .chan | replace \"695\" \"eighth\"}}` | label_format chan=`{{ .chan | replace \"620\" \"sowester\"}}` | label_format chan=`{{ .chan | replace \"625\" \"upright\"}}` | label_format chan=`{{ .chan | replace \"415\" \"breckenridge\"}}` | label_format chan=`{{ .chan | replace \"640\" \"alley27\"}}` | label_format chan=`{{ .chan | replace \"630\" \"ypsi\"}}` | label_format chan=`{{ .chan | replace \"680\" \"ainsworth\"}}` | label_format chan=`{{ .chan | replace \"405\" \"saratoga\"}}` | event != `contact-status-Avail` | drop timestamp, label, event, batch, channel | __error__=`` [1h])",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "New Panel",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "valueLabel": "chan"
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "c431642d-109a-4544-92dc-9918dda9a07a"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "points",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 10,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "\"PJSIP-445\"": {
+                  "index": 3,
+                  "text": "eekmicro"
+                },
+                "PJSIP-445": {
+                  "index": 0,
+                  "text": "microcosm"
+                },
+                "channel=\"PJSIP-410\"": {
+                  "index": 2,
+                  "text": "central2"
+                },
+                "{channel=\"PJSIP-410\"}": {
+                  "index": 1,
+                  "text": "central"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 16,
+        "w": 12,
+        "x": 12,
+        "y": 11
+      },
+      "id": 3,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "c431642d-109a-4544-92dc-9918dda9a07a"
+          },
+          "editorMode": "builder",
+          "expr": "count by(channel) (rate({label=\"futel-events\"} |= `` | json event=\"event\", channel=\"channel\" | event != `contact-status-Avail` | __error__=`` [$__auto]))",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "pretty points",
+      "transformations": [],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "c431642d-109a-4544-92dc-9918dda9a07a"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "mappings": [
+            {
+              "options": {
+                "\"PJSIP-445\"": {
+                  "index": 3,
+                  "text": "eekmicro"
+                },
+                "PJSIP-445": {
+                  "index": 0,
+                  "text": "microcosm"
+                },
+                "channel=\"PJSIP-410\"": {
+                  "index": 2,
+                  "text": "central2"
+                },
+                "{channel=\"PJSIP-410\"}": {
+                  "index": 1,
+                  "text": "central"
+                }
+              },
+              "type": "value"
+            }
+          ]
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 16
+      },
+      "id": 2,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "c431642d-109a-4544-92dc-9918dda9a07a"
+          },
+          "editorMode": "code",
+          "expr": "count_over_time({label=\"futel-events\"} |= `` | json event=\"event\", channel=\"channel\" | event != `contact-status-Avail` | label_format chan=`{{ Replace .channel \"PJSIP-\" \"\" -1 }}` | label_format chan=`{{ .chan | replace \"445\" \"microcosm\"}}` | label_format chan=`{{ .chan | replace \"410\" \"central\"}}` | label_format chan=`{{ .chan | replace \"615\" \"robotron\"}}` | label_format chan=`{{ .chan | replace \"655\" \"taylor\"}}` | label_format chan=`{{ .chan | replace \"695\" \"eighth\"}}` | label_format chan=`{{ .chan | replace \"620\" \"sowester\"}}` | label_format chan=`{{ .chan | replace \"625\" \"upright\"}}` | label_format chan=`{{ .chan | replace \"415\" \"breckenridge\"}}` | label_format chan=`{{ .chan | replace \"640\" \"alley27\"}}` | label_format chan=`{{ .chan | replace \"630\" \"ypsi\"}}` | label_format chan=`{{ .chan | replace \"680\" \"ainsworth\"}}` | label_format chan=`{{ .chan | replace \"405\" \"saratoga\"}}` | drop timestamp, batch, channel, event, label | __error__=`` [$__auto])",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "New Panel",
+      "transformations": [
+        {
+          "id": "labelsToFields",
+          "options": {
+            "valueLabel": "chan"
+          }
+        }
+      ],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "c431642d-109a-4544-92dc-9918dda9a07a"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 16,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 24
+      },
+      "id": 1,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "loki",
+            "uid": "c431642d-109a-4544-92dc-9918dda9a07a"
+          },
+          "editorMode": "builder",
+          "expr": "count(rate({label=\"futel-events\"} | json | event =~ `outgoing.*` | __error__=`` [1h]))",
+          "queryType": "range",
+          "refId": "A"
+        }
+      ],
+      "title": "outgoing shit",
+      "transformations": [],
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-5d",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Futel Shit",
+  "uid": "cf8a4c17-7d16-4829-9e23-0ba205c7ed81",
+  "version": 23,
+  "weekStart": ""
+}
