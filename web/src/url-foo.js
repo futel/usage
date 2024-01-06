@@ -18,6 +18,7 @@ function init(){
   combine.addEventListener('change', e => {
     setOrDelete('c', combine.checked ? 1 : 0);
   });
+  document.getElementById('showinactive').addEventListener('change', updateShowInactive);
   document.getElementById('aggregate').addEventListener('change', updateAggregation);
   document.getElementById('tsortby').addEventListener('change', updateSortBy);
   bootstrapUrl();
@@ -57,6 +58,10 @@ function bootstrapUrl(){
         opt.selected = true;
       }
     });
+  }
+  const si = url.searchParams.get('si');
+  if(si === true){
+    document.getElementById('showinactive').checked = true;
   }
   const r = url.searchParams.get('r');
   if(r){
@@ -119,6 +124,11 @@ function updateEventSelection(event){
   const events = eventList.getSelectedEvents();
   console.log(events);
   setOrDelete('e', events.join('|'));
+}
+
+function updateShowInactive(event){
+  const v = document.getElementById('showinactive').checked;
+  setOrDelete('si', v);
 }
 
 export {
