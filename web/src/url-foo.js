@@ -19,6 +19,7 @@ function init(){
     setOrDelete('c', combine.checked ? 1 : 0);
   });
   document.getElementById('aggregate').addEventListener('change', updateAggregation);
+  document.getElementById('tsortby').addEventListener('change', updateSortBy);
   bootstrapUrl();
 }
 
@@ -43,6 +44,15 @@ function bootstrapUrl(){
   if(a){
     const agg = document.getElementById('aggregate');
     Array.prototype.forEach.call(agg.options, opt => {
+      if(opt.value === a){
+        opt.selected = true;
+      }
+    });
+  }
+  const sb = url.searchParams.get('sb');
+  if(sb){
+    const sortby = document.getElementById('tsortby');
+    Array.prototype.forEach.call(sortby.options, opt => {
       if(opt.value === a){
         opt.selected = true;
       }
@@ -86,6 +96,15 @@ function updateAggregation(event){
   Array.prototype.forEach.call(agg.options, opt => {
     if(opt.selected){
       return setOrDelete('a', opt.value);
+    }
+  });
+}
+
+function updateSortBy(){
+  const agg = document.getElementById('tsortby');
+  Array.prototype.forEach.call(agg.options, opt => {
+    if(opt.selected){
+      return setOrDelete('sb', opt.value);
     }
   });
 }

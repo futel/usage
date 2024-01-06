@@ -13,9 +13,22 @@ function init(){
     console.log('graphing it');
     graph.buildAndShow();
   }
-  ['combine-phones', 'aggregate', 'showinactive'].forEach(name => {
+  ['combine-phones', 'aggregate', 'showinactive', 'tsortby'].forEach(name => {
     document.getElementById(name).addEventListener('change', e => {
       graph.buildAndShow();
+    });
+  });
+  const agg = document.getElementById('aggregate');
+  agg.addEventListener('change', e => { 
+    Array.prototype.forEach.call(agg.options, opt => {
+      if(opt.selected){
+        if(opt.value == 'total'){
+          uiShow('tsortbydiv');
+        }
+        else {
+          uiHide('tsortbydiv');
+        }
+      }
     });
   });
 }
