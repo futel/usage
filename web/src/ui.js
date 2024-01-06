@@ -22,7 +22,6 @@ function init(){
   toggleSortByVizBasedOnAggType();
   document.getElementById('aggregate').addEventListener('change', toggleSortByVizBasedOnAggType);
   getDataLastUpdated().then(date => { 
-    console.log(`FUCK: ${date}`)
     document.getElementById('lastupdated').innerHTML = date;
   })
 
