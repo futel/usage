@@ -1,6 +1,7 @@
 
 import * as phoneList from './phone-list';
 import * as graph from './graph';
+import { getDataLastUpdated } from './data-loader';
 
 function init(){
   document.getElementById('allphones').onclick = () => {
@@ -20,6 +21,10 @@ function init(){
   });
   toggleSortByVizBasedOnAggType();
   document.getElementById('aggregate').addEventListener('change', toggleSortByVizBasedOnAggType);
+  getDataLastUpdated().then(date => { 
+    document.getElementById('lastupdated').innerHTML = date;
+  })
+
 }
 
 function toggleSortByVizBasedOnAggType(){

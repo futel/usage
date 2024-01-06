@@ -19,6 +19,13 @@ async function getRangeByMonth(start, end){
     });
 }
 
+async function getDataLastUpdated(){
+  return fetch('data/last_updated.txt')
+    .then(resp => {
+      return resp.ok ? resp.text() : '';
+    });
+}
+
 function makeYearMonthRange(start, end){
   let cur = new Date(`${start}T00:00:00Z`);
   const endDate = new Date(`${end}T23:59:59Z`);
@@ -46,5 +53,6 @@ async function getEventList(){
 
 export {
   getRangeByMonth,
-  getEventList
+  getEventList,
+  getDataLastUpdated
 }
