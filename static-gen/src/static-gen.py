@@ -1,4 +1,5 @@
 import s3_util
+import fs_util
 import updated_state
 import spreader
 
@@ -15,3 +16,7 @@ for s3_key in s3_util.daily_files_gen():
         updated_state.update(s3_key)
 
 updated_state.flush_write()
+
+buildDir = fs_util.make_build_dir()
+with open('{}/{}'.format(buildDir, 'last_updated.txt'), 'w') as outfile:
+    outfile.write(updated_state.last_updated())
