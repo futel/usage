@@ -19,3 +19,7 @@ body {
 #event-list {
 	width: 95%;
 }
+
+.tinytext {
+	font-size: .8em;
+}
