@@ -18,18 +18,21 @@ function init(){
       graph.buildAndShow();
     });
   });
+  toggleSortByVizBasedOnAggType();
+  document.getElementById('aggregate').addEventListener('change', toggleSortByVizBasedOnAggType);
+}
+
+function toggleSortByVizBasedOnAggType(){
   const agg = document.getElementById('aggregate');
-  agg.addEventListener('change', e => { 
-    Array.prototype.forEach.call(agg.options, opt => {
-      if(opt.selected){
-        if(opt.value == 'total'){
-          uiShow('tsortbydiv');
-        }
-        else {
-          uiHide('tsortbydiv');
-        }
+  Array.prototype.forEach.call(agg.options, opt => {
+    if(opt.selected){
+      if(opt.value == 'total'){
+        uiShow('tsortbydiv');
       }
-    });
+      else {
+        uiHide('tsortbydiv');
+      }
+    }
   });
 }
 
