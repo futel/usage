@@ -35,3 +35,6 @@ def flush_write():
     # print(buildDir)
     with open('{}/{}'.format(buildDir, STATE_FILE), 'w') as outfile:
         json.dump(_state, outfile, indent=2)
+
+def last_updated():
+    return max([y['ts'] for y in _state.values()])
