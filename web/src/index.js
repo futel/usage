@@ -14,6 +14,7 @@ async function initAll(){
   await eventList.init();
   ui.init();
   urlFoo.init();
+  ui.toggleSortByVizBasedOnAggType();
   relDates.init();
 }
 

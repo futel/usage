@@ -70,9 +70,20 @@ function showTotal(data){
     return;
   }
   uiShow('chartWrapper');
-  const totals = Object.entries(Object.values(data)).map(p => p[1]['total']);
+
+  // convert to tuple [name,total]
+  const tots = Object.entries(data).map(p => ([p[0],p[1]['total']]));
+
+  const sb = document.getElementById('tsortby').value;
+  if(sb === 'count'){
+    tots.sort( (a,b) => b[1] - a[1]);
+  }
+
+  const labels = tots.map(p => p[0]);
+  const totals = tots.map(p => p[1]);
+
   const chartData = {
-    labels: Object.keys(data),
+    labels: labels,
     datasets: [{
       label: 'total',
       borderColor: 'black',
@@ -93,7 +104,7 @@ function showTotal(data){
     config
   );
 
-  Object.entries(data).forEach(p => {
+  tots.forEach(p => {
     const tr = document.createElement('tr');
     table.appendChild(tr);
     const name = document.createElement('td');
@@ -101,10 +112,9 @@ function showTotal(data){
     tr.append(name);
     const value = document.createElement('td');
     value.classList.add('px-4');
-    value.innerText = p[1]['total'];
+    value.innerText = p[1];
     tr.append(value);
   });
-  // console.log(data);
 }
 
 function createDatasets(data){

@@ -13,11 +13,23 @@ function init(){
     console.log('graphing it');
     graph.buildAndShow();
   }
-  ['combine-phones', 'aggregate', 'showinactive'].forEach(name => {
+  ['combine-phones', 'aggregate', 'showinactive', 'tsortby'].forEach(name => {
     document.getElementById(name).addEventListener('change', e => {
       graph.buildAndShow();
     });
   });
+  toggleSortByVizBasedOnAggType();
+  document.getElementById('aggregate').addEventListener('change', toggleSortByVizBasedOnAggType);
+}
+
+function toggleSortByVizBasedOnAggType(){
+  const agg = document.getElementById('aggregate');
+  if(agg.value === 'total'){
+    uiShow('tsortbydiv');
+  }
+  else {
+    uiHide('tsortbydiv');
+  }
 }
 
 //attribution: https://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-javascript
@@ -55,5 +67,6 @@ export {
   stringToColor,
   uiShow,
   uiHide,
-  wantInactivePhones
+  wantInactivePhones,
+  toggleSortByVizBasedOnAggType
 };
