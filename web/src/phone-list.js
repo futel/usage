@@ -28,7 +28,6 @@ const phones = {
   "bottles and cans two": "bottles-and-cans-two",
   "cesar chavez": "cesar-chavez",
   "ghost mountain": "ghost-mountain",
-  "ghost mountain": "ghost-mountain",
   "landline": "landline",
   "r2d2": "r2d2",
   "sjac": "sjac",
