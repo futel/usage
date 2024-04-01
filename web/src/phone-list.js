@@ -6,8 +6,8 @@ const phones = {
   "hedron": "440",
   "central": "410",
   "breckenridge": "415",
-  "cesar chavez": "420",
-  "sjac-old": "435",
+  "cesar chavez old": "420",
+  "sjac old": "435",
   "microcosm": "445",
   "clinton": "610",
   "robotron": "615",
@@ -24,13 +24,20 @@ const phones = {
   "detroitbusco": "690",
   "eighth": "695",
   "demo": "700",
-  "ghost-mountain": "ghost-mountain",
-  "r2d2": "r2d2",    
+  "bottles and cans one": "bottles-and-cans-one",
+  "bottles and cans two": "bottles-and-cans-two",
+  "cesar chavez": "cesar-chavez",
+  "ghost mountain": "ghost-mountain",
+  "ghost mountain": "ghost-mountain",
+  "landline": "landline",
+  "r2d2": "r2d2",
   "sjac": "sjac",
-  "twilio": "twilio",    
-  "incoming-1": "voipms",
-  "incoming-2": "twilio-termination",
-  "incoming-3": "futel.pstn.twilio.com"
+  "street books one": "street-books-one",
+  "street books two": "street-books-two",
+  "twilio": "twilio",
+  "incoming 1": "voipms",
+  "incoming 2": "twilio-termination",
+  "incoming 3": "futel.pstn.twilio.com"
 };
 const chanToName = Object.fromEntries(
   Object.entries(phones).map(x => [x[1],x[0]])
