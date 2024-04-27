@@ -27,7 +27,7 @@ const phones = {
   "bottles and cans one": "bottles-and-cans-one",
   "bottles and cans two": "bottles-and-cans-two",
   "cesar chavez": "cesar-chavez",
-  "demo office": "demo-office",
+  "dome office": "dome-office",
   "ghost mountain": "ghost-mountain",
   "landline": "landline",
   "r2d2": "r2d2",
