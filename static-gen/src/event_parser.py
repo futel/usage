@@ -12,11 +12,16 @@ def parse(line):
     return event
 
 def fix_channel(event):
+    """Dictify event and munge the channel item."""
     result = dict(event)
-    # Normalize PJSIP/630-00000000 to PJSIP-630
-    result['channel'] = re.sub(r'(SIP).(.*)-.*', r'\1-\2', result['channel'])
-    # Normalize PJSIP/640 to PJSIP_640
-    result['channel'] = re.sub(r'(SIP).(\d+)$', r'\1-\2', result['channel'])
+    if result.get('endpoint'):
+        result['channel'] = result['endpoint']
+    else:
+        # Normalize PJSIP/630-00000000 to PJSIP-630
+        result['channel'] = re.sub(
+            r'(SIP).(.*)-.*', r'\1-\2', result['channel'])
+        # Normalize PJSIP/640 to PJSIP_640
+        result['channel'] = re.sub(r'(SIP).(\d+)$', r'\1-\2', result['channel'])
     return result
 
 def normalize_event_name(event):
