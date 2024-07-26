@@ -29,11 +29,11 @@ function bootstrapUrl(){
   const url = new URL(window.location.href);
   const phones = url.searchParams.get('p');
   if(phones){
-    phoneList.selectChannels( phones.split('|'));
+    phoneList.selectChannels(phones.split('|'));
   }
   const events = url.searchParams.get('e');
   if(events){
-    eventList.selectEvents(events);
+    eventList.selectEvents(events.split('|'));
   }
   const start = url.searchParams.get('start');
   if(start) dates.setStartDate(start);
