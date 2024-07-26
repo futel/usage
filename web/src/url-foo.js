@@ -60,7 +60,7 @@ function bootstrapUrl(){
     });
   }
   const si = url.searchParams.get('si');
-  if(si === true){
+  if(si === "true"){
     document.getElementById('showinactive').checked = true;
   }
   const r = url.searchParams.get('r');
