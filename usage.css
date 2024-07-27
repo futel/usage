@@ -23,3 +23,8 @@ body {
 .tinytext {
 	font-size: .8em;
 }
+
+.usertitle {
+	text-decoration: none;
+	color: black;
+}
