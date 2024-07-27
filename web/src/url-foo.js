@@ -64,15 +64,15 @@ function bootstrapUrl(){
   if(si === "true"){
     document.getElementById('showinactive').checked = true;
   }
-  const r = url.searchParams.get('r');
-  if(r){
-    return reldates.setReldateExpr(r);
-  }
   const t = url.searchParams.get('t');
   if(t){
     document.getElementById('title-edit').value = t;
     document.getElementById('graphtitle').innerText = t;
     document.title = `FUTEL - ${t}`;
+  }
+  const r = url.searchParams.get('r');
+  if(r){
+    return reldates.setReldateExpr(r);
   }
   if(url.searchParams.toString()){
       graph.buildAndShow();
