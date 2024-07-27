@@ -21,6 +21,7 @@ function init(){
   document.getElementById('showinactive').addEventListener('change', updateShowInactive);
   document.getElementById('aggregate').addEventListener('change', updateAggregation);
   document.getElementById('tsortby').addEventListener('change', updateSortBy);
+  document.getElementById('title-edit').addEventListener('change', updateTitle);
   bootstrapUrl();
 }
 
@@ -67,6 +68,12 @@ function bootstrapUrl(){
   if(r){
     return reldates.setReldateExpr(r);
   }
+  const t = url.searchParams.get('t');
+  if(t){
+    document.getElementById('title-edit').value = t;
+    document.getElementById('graphtitle').innerText = t;
+    document.title = `FUTEL - ${t}`;
+  }
   if(url.searchParams.toString()){
       graph.buildAndShow();
   }
@@ -112,6 +119,12 @@ function updateSortBy(){
       return setOrDelete('sb', opt.value);
     }
   });
+}
+
+function updateTitle(){
+  const t = document.getElementById('title-edit');
+  setOrDelete('t', t.value);
+  document.title = `FUTEL - ${t.value}`;
 }
 
 function updateReldate(expr){
