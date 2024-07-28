@@ -29,6 +29,8 @@ const phones = {
   "cesar chavez": "cesar-chavez",
   "dome office": "dome-office",
   "ghost mountain": "ghost-mountain",
+  "groundscore one": "groundscore-one",
+  "groundscore two": "groundscore-two",    
   "landline": "landline",
   "r2d2": "r2d2",
   "sjac": "sjac",
