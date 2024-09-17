@@ -17,6 +17,7 @@ const phones = {
   "eighth": "695",
   "bottles and cans one": "bottles-and-cans-one",
   "bottles and cans two": "bottles-and-cans-two",
+  "brazee": "brazee",
   "cesar chavez": "cesar-chavez",
   "clinton": "clinton",
   "dome office": "dome-office",
