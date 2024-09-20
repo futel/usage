@@ -20,6 +20,8 @@ const phones = {
   "brazee": "brazee",
   "cesar chavez": "cesar-chavez",
   "clinton": "clinton",
+  "dome basement": "dome-basement",
+  "dome booth": "dome-booth",
   "dome office": "dome-office",
   "fortysecond": "fortysecond",    
   "ghost mountain": "ghost-mountain",
