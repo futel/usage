@@ -27,6 +27,7 @@ const phones = {
   "dome basement": "dome-basement",
   "dome booth": "dome-booth",
   "dome office": "dome-office",
+  "fiftyeighth": "fiftyeighth",
   "fortysecond": "fortysecond",    
   "ghost mountain": "ghost-mountain",
   "groundscore one": "groundscore-one",
