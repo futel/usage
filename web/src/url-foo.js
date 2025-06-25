@@ -20,6 +20,7 @@ function init(){
   });
   document.getElementById('showinactive').addEventListener('change', updateShowInactive);
   document.getElementById('aggregate').addEventListener('change', updateAggregation);
+  document.getElementById('chartType').addEventListener('change', updateChartType);
   document.getElementById('tsortby').addEventListener('change', updateSortBy);
   document.getElementById('title-edit').addEventListener('change', updateTitle);
   bootstrapUrl();
@@ -47,6 +48,15 @@ function bootstrapUrl(){
     const agg = document.getElementById('aggregate');
     Array.prototype.forEach.call(agg.options, opt => {
       if(opt.value === a){
+        opt.selected = true;
+      }
+    });
+  }
+  const c = url.searchParams.get('chart');
+  if(c){
+    const ct = document.getElementById('chartType');
+    Array.prototype.forEach.call(ct.options, opt => {
+      if(opt.value === c){
         opt.selected = true;
       }
     });
@@ -108,6 +118,15 @@ function updateAggregation(event){
   Array.prototype.forEach.call(agg.options, opt => {
     if(opt.selected){
       return setOrDelete('a', opt.value);
+    }
+  });
+}
+
+function updateChartType(event){
+  const ct = document.getElementById('chartType');
+  Array.prototype.forEach.call(ct.options, opt => {
+    if(opt.selected){
+      return setOrDelete('chart', opt.value);
     }
   });
 }
