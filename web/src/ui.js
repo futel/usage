@@ -14,7 +14,7 @@ function init(){
     console.log('graphing it');
     graph.buildAndShow();
   }
-  ['combine-phones', 'aggregate', 'showinactive', 'tsortby'].forEach(name => {
+  ['chartType', 'combine-phones', 'aggregate', 'showinactive', 'tsortby'].forEach(name => {
     document.getElementById(name).addEventListener('change', e => {
       graph.buildAndShow();
     });
