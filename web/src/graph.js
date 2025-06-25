@@ -33,6 +33,12 @@ async function buildAndShow(){
   plot(data);
 }
 
+// Get user's chart type preference from the control.
+function getChartType() {
+  const chartTypeElement = document.getElementById('chartType');
+  return chartTypeElement ? chartTypeElement.value : 'line';
+}
+
 function plot(data){
   uiHide('chartWrapper');
   if(chart){
@@ -48,10 +54,19 @@ function plot(data){
     datasets: createDatasets(data)
   };
   console.log(chartData);
-  const config = {
-    type: 'line',
+
+
+  const chartType = getChartType();
+  const config = {    
+    type: chartType,
     data: chartData,
-    options: {}
+
+    options: {
+      scales: chartType === 'bar' ? {
+        x: { stacked: true },
+        y: { stacked: true }
+      } : {}
+    }
   };
   const ctx = document.getElementById('chart').getContext('2d');
   chart = new Chart(
@@ -118,13 +133,29 @@ function showTotal(data){
 }
 
 function createDatasets(data){
-  return Object.entries(data).map(e => {
+  // datasetsWithTotals: data with 'total' property for decorated sorting.
+  const datasetsWithTotals = Object.entries(data).map(e => {
     const name = e[0] === 'x' ? 'all phones' : e[0];
+    const values = Object.values(e[1]);
+    const total = values.reduce((sum, val) => sum + val, 0);
+    const color = stringToColor(name);
+    
     return {
       label: name,
-      borderColor: stringToColor(name),
-      data: Object.values(e[1])
+      borderColor: color,
+      backgroundColor: color,   // For bar charts.
+      data: values,
+      total: total // For sorting.
     };
+  });
+  
+  // Sort by total, descending.
+  datasetsWithTotals.sort((a, b) => b.total - a.total);
+  
+  // Remove the sort property and return.
+  return datasetsWithTotals.map(dataset => {
+    const { total, ...datasetWithoutTotal } = dataset;
+    return datasetWithoutTotal;
   });
 }
 
