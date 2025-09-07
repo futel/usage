@@ -39,6 +39,7 @@ const phones = {
   "princeton": "princeton",
   "r2d2": "r2d2",
   "saratoga": "saratoga",
+  "seattle-thistle": "seattle-thistle",
   "sjac": "sjac",
   "street-roots-one": "street-roots-one",
   "system": "system",
