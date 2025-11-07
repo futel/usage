@@ -1,5 +1,6 @@
-These are just strings and will need to be updated as extensions and events change.
+# Views useful for monitoring
 
+These are just copies of URLs with arguments and need to be updated as extensions and events change.
 
 Good dialstatus with twilio programmable voice. This is outcomes reported from the status of the completed outgoing or incoming calls.
 
@@ -12,5 +13,3 @@ Bad status with twilio programmable voice. This is twilio errors and attempted t
 Bad outgoing dialstatus with twilio programmable voice. This is twilio errors and attempted twilio outgoing calls and outcomes reported from the status of the completed outgoing calls.
 
 [bad outgoing dialstatus](https://futel.github.io/usage/?r=-2m&a=weekly&p=ainsworth%7C680%7C640%7Calleytwentyseventh%7Cbottles-and-cans-one%7Cbottles-and-cans-two%7Cbrazee%7Cbreckenridge%7C415%7Ccentral%7C410%7Ccesar-chavez-one%7Ccesar-chavez-two%7Cclinton%7Cdome-basement%7Cdome-booth%7Cdome-office%7Ceighth%7C695%7Cfiftyeighth%7Cfortysecond%7Cghost-mountain%7Cgroundscore-one%7Cgroundscore-two%7Cvoipms%7Ctwilio-termination%7Cfutel.pstn.twilio.com%7Ckillingsworth%7Clandline%7Cmicrocosm%7C668%7Cprinceton%7Cr2d2%7C615%7Csaratoga%7C405%7Cseattle-estelitas%7Cseattle-thistle%7Csjac%7C620%7Cstreet-roots-one%7Csystem%7Ctaylor%7C655%7Ctwilio%7C625%7C630&e=outgoing-dialstatus-failed&t=bad+outgoing+dialstatus&chart=bar)
-
-
