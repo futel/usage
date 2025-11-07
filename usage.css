@@ -6,25 +6,143 @@ html {
 
 body {
 	height: 100%;
+	background-color: #212529;
+	color: #dee2e6;
 }
 
 .dateinput {
 	width: 95%;
+	background-color: #343a40;
+	color: #dee2e6;
 }
 
-#phone-list {
-	width: 95%;
+#phone-list,
+#event-list,
+#aggregate,
+#chartType,
+#tsortby {
+	background-color: #343a40;
+	color: #dee2e6;
 }
 
+#phone-list,
 #event-list {
 	width: 95%;
 }
 
+#phone-list option,
+#event-list option {
+	background-color: #343a40;
+	color: #dee2e6;
+}
+
+#phone-list option:checked,
+#event-list option:checked {
+	background-color: #0d6efd;
+}
+
+#date-rel {
+	background-color: #343a40;
+	color: #dee2e6;
+}
+
+#date-rel:focus {
+	background-color: #495057;
+	border-color: #86b7fe;
+}
+
+#title-edit {
+	background-color: #343a40;
+	color: #dee2e6;
+}
+
+.sidebar {
+	background-color: #1a1d20 !important;
+}
+
+.nav-tabs .nav-link {
+	color: #adb5bd;
+}
+
+.nav-tabs .nav-link:hover {
+	color: #dee2e6;
+}
+
+.nav-tabs .nav-link.active {
+	color: #dee2e6;
+	background-color: #212529;
+}
+
 .tinytext {
 	font-size: .8em;
+	color: #adb5bd;
 }
 
 .usertitle {
 	text-decoration: none;
-	color: black;
+	color: #dee2e6;
+}
+
+.usertitle:hover {
+	color: #fff;
+}
+
+#edit-text-icon {
+	fill: #adb5bd;
+}
+
+.usertitle:hover #edit-text-icon {
+	fill: #dee2e6;
+}
+
+#chartWrapper {
+	background-color: #212529;
+}
+
+canvas {
+	background-color: #212529;
+}
+
+table {
+	color: #dee2e6;
+}
+
+.btn-primary {
+	background-color: #0d6efd;
+}
+
+.btn-primary:hover {
+	background-color: #0b5ed7;
+}
+
+.form-check-input {
+	background-color: #343a40;
+}
+
+.form-check-input:checked {
+	background-color: #0d6efd;
+}
+
+.form-check-label {
+	color: #dee2e6;
+}
+
+.sidebar-heading {
+	color: #6c757d;
+}
+
+.link-secondary {
+	color: #6c757d;
+}
+
+.link-secondary:hover {
+	color: #adb5bd;
+}
+
+.nav-link {
+	color: #adb5bd;
+}
+
+.nav-link:hover {
+	color: #dee2e6;
 }
