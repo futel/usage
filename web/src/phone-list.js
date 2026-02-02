@@ -44,7 +44,7 @@ const phones = {
   "seattle-thistle": "seattle-thistle",
   "sjac": "sjac",
   "street-roots-one": "street-roots-one",
-  "sunnyside-shower-project", "sunnyside-shower-project",
+  "sunnyside-shower-project": "sunnyside-shower-project",
   "system": "system",
   "taylor": "taylor",    
   "twilio": "twilio",
