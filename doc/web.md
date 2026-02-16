@@ -1,7 +1,8 @@
-
 This is the web UI for the usage data.
 
 # running locally
+
+To be done in the web directory.
 
 ```
 $ npm install

@@ -2,6 +2,10 @@
 
 Generates static data files from s3 event files.
 
+* look at the bucket `logpublish` bucket content for keys prefixed with `events/prod`
+* for each key, compare the last updated date and timestamp. If different, continue, else skip file
+* dump an updated version of the `updated_state.json` file out to the `build/` directory.
+
 The goal is to automate this generation so that the data files
 in `gh-pages` branch are up-to-date within a few hours, or a day at worst.
 
@@ -23,44 +27,9 @@ allows us to detect changes in S3 and reprocess the data.
 S3 data can be reprocessed by removing keys in the `updated_state.json` file
 and re-running the static generator.
 
-# setup
-
-As a developer, you should probably use virtualenv.
-
-```
-$ virtualenv env
-$ source env/bin/activate
-```
-
-Then install the prerequisites:
-
-```
-$ pip install -r requirements.txt
-```
-
-# running
-
-The main entrypoint is in `src/static-gen.py`. Because it reads from S3, it
-requires the usual aws creds to be set up. This is one way:
-
-```
-$ export AWS_ACCESS_KEY_ID=<your-key-id>
-$ export AWS_SECRET_ACCESS_KEY=<your-key>
-$ python src/static-gen.py
-```
-
-This app will:
-
-* look at the bucket `logpublish` bucket content for keys prefixed with `events/prod`
-* for each key, compare the last updated date and timestamp. If different, continue, else skip file
-
-And finally, if everything worked, we dump an updated version of the `updated_state.json`
-file out to the `build/` directory.
-
 # aggregation
 
 tbd (next)
-
 
 # github action
 
@@ -74,7 +43,7 @@ Here's what it does:
 * rsync the `gh-pages` data dir into the `static-gen` subdir
 * run the static generator
 * rsync the new output data from the `gh-pages/build` dir into the `gh-pages` data dir
-* commit the data back to the gh-pages branch
+p* commit the data back to the gh-pages branch
 
 The action is configured to run every 4 hours.
 
