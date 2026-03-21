@@ -37,7 +37,7 @@ const phones = {
   "killingsworth": "killingsworth",
   "landline": "landline",
   "microcosm": "microcosm",
-  "mother-foucaults", "mother-foucaults",
+  "mother-foucaults": "mother-foucaults",
   "princeton": "princeton",
   "r2d2": "r2d2",
   "saratoga": "saratoga",
