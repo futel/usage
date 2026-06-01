@@ -8,16 +8,16 @@ jobs:
   static-gen:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
     - name: checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v6
       with:
         ref: gh-pages
         path: gh-pages
     - name: copy data from gh-pages branch
       run: |
         rsync -avv gh-pages/data/ static-gen/data/
-    - uses: actions/setup-python@v4
+    - uses: actions/setup-python@v6
       with:
         python-version: '3.x'
     - name: install deps
@@ -43,7 +43,7 @@ jobs:
     - name: debug peek in the data directory
       run: ls -l gh-pages && ls -l gh-pages/data
     - name: commit updated data
-      uses: EndBug/add-and-commit@v9
+      uses: EndBug/add-and-commit@v10
       with:
         add: 'data'
         cwd: './gh-pages'
