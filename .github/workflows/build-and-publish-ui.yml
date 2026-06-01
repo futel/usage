@@ -9,15 +9,15 @@ jobs:
   build-web-ui:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
+    - uses: actions/checkout@v6
+    - uses: actions/setup-node@v6
     - run: npm install
       working-directory: ./web
     - name: build web ui
       run: npm run build
       working-directory: ./web
     - name: checkout gh-pages
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         ref: gh-pages
         path: gh-pages
@@ -25,7 +25,7 @@ jobs:
       run: |
         rsync -avv web/dist/ gh-pages/
     - name: commit updated data
-      uses: EndBug/add-and-commit@v9
+      uses: EndBug/add-and-commit@v10
       with:
         add: '.'
         cwd: './gh-pages'
