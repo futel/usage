@@ -10,10 +10,6 @@ function init(){
   document.getElementById('allincoming').onclick = () => {
     phoneList.selectAllIncoming();
   }
-  document.getElementById('graphit').onclick = () => {
-    console.log('graphing it');
-    graph.buildAndShow();
-  }
   ['chartType', 'combine-phones', 'aggregate', 'showinactive', 'tsortby'].forEach(name => {
     document.getElementById(name).addEventListener('change', e => {
       graph.buildAndShow();
