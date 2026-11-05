@@ -29,6 +29,10 @@ function init(){
 // On init, if we have incoming params, set everything up
 function bootstrapUrl(){
   const url = new URL(window.location.href);
+  // Embed mode hides the controls, leaving only the graph.
+  if(url.searchParams.get('embed')){
+    document.body.classList.add('embed');
+  }
   const phones = url.searchParams.get('p');
   if(phones){
     phoneList.selectChannels(phones.split('|'));

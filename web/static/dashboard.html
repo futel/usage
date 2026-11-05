@@ -9,14 +9,34 @@
   <link rel="icon" href="/favicon.ico">
   <title>Futel Usage</title>
   <style>
+    /* Fit everything in the viewport; the graphs share the space below the logo. */
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+    body > .container-fluid {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
     #graphs {
+      flex: 1;
+      min-height: 0;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 600px), 1fr));
+      grid-auto-rows: 1fr;
       gap: 1rem;
+      padding-bottom: .5rem;
+    }
+    .graph {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
     }
     .graph iframe {
+      flex: 1;
+      min-height: 0;
       width: 100%;
-      height: 480px;
       border: 0;
     }
   </style>

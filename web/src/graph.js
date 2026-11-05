@@ -39,6 +39,11 @@ function getChartType() {
   return chartTypeElement ? chartTypeElement.value : 'line';
 }
 
+// In embed mode the chart fills its container instead of keeping its aspect ratio.
+function isEmbedded() {
+  return document.body.classList.contains('embed');
+}
+
 function plot(data){
   uiHide('chartWrapper');
   if(chart){
@@ -62,6 +67,7 @@ function plot(data){
     data: chartData,
 
     options: {
+      maintainAspectRatio: !isEmbedded(),
       scales: chartType === 'bar' ? {
         x: { stacked: true },
         y: { stacked: true }
@@ -110,7 +116,9 @@ function showTotal(data){
   const config = {
     type: 'bar',
     data: chartData,
-    options: {}
+    options: {
+      maintainAspectRatio: !isEmbedded()
+    }
   };
   console.log(config);
   const ctx = document.getElementById('chart').getContext('2d');
