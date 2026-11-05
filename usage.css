@@ -134,3 +134,46 @@ table {
 .nav-link:hover {
 	color: #dee2e6;
 }
+
+/* Embed mode (?embed=1): graph only, no controls. */
+body.embed #sidebarMenu,
+body.embed #showinactive-wrapper,
+body.embed #edit-text-icon {
+	display: none !important;
+}
+
+body.embed {
+	overflow: hidden;
+}
+
+body.embed > .container-fluid,
+body.embed .row {
+	height: 100%;
+}
+
+body.embed main {
+	width: 100% !important;
+	margin-left: 0 !important;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+body.embed #chartWrapper {
+	flex: 1;
+	min-height: 0;
+	position: relative;
+}
+
+body.embed #totals:empty {
+	display: none;
+}
+
+body.embed h1 {
+	font-size: 1.5rem;
+	margin-top: .5rem !important;
+}
+
+body.embed .usertitle {
+	pointer-events: none;
+}
