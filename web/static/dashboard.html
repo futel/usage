@@ -54,9 +54,6 @@
     const graphs = [
       {
         t: 'Good dialstatus',
-        r: '-6w',
-        a: 'weekly',
-        chart: 'bar',
         p: [
           'ainsworth',
           'alleytwentyseventh',
@@ -108,9 +105,6 @@
       },
       {
         t: 'Bad status',
-        r: '-6w',
-        a: 'weekly',
-        chart: 'bar',
         p: [
           'ainsworth',
           'alleytwentyseventh',
@@ -177,12 +171,19 @@
       },
     ];
 
-    // Return the query string for a graph's parameters.
-    function query(params) {
+    // Return the query string for a graph's parameters, adding the
+    // parameters shared by every graph. Embed hides the editor controls.
+    function query(params, embed) {
       const search = new URLSearchParams();
       Object.entries(params).forEach(([key, value]) => {
         search.set(key, Array.isArray(value) ? value.join('|') : value);
       });
+      search.set('r', '-6w');
+      search.set('a', 'weekly');
+      search.set('chart', 'bar');
+      if (embed) {
+        search.set('embed', 1);
+      }
       return search.toString();
     }
 
@@ -191,7 +192,7 @@
       const div = document.createElement('div');
       div.classList.add('graph');
       const iframe = document.createElement('iframe');
-      iframe.src = `index.html?${query({...params, embed: 1})}`;
+      iframe.src = `index.html?${query(params, true)}`;
       div.appendChild(iframe);
       const link = document.createElement('a');
       link.href = `index.html?${query(params)}`;
