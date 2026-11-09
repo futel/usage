@@ -47,22 +47,154 @@
     <div id="graphs"></div>
   </div>
   <script>
-    // Query strings for each graph. Build a graph in the main UI
-    // (index.html), then copy everything after the '?' in its URL here.
+    // Parameters for each graph; see web/src/url-foo.js for their meaning.
+    // Phones (p) and events (e) are lists, which are joined with '|'.
+    // To add a graph, build it in the main UI (index.html) and copy the
+    // parameters from its URL.
     const graphs = [
-        'r=-6w&e=incoming-dialstatus-busy-cesar-chavez|incoming-dialstatus-busy-ghost-mountain|incoming-dialstatus-busy-groundscore-one|incoming-dialstatus-completed-cesar-chavez|incoming-dialstatus-completed-ghost-mountain|incoming-dialstatus-completed-groundscore-one|incoming-dialstatus-no-answer-cesar-chavez|incoming-dialstatus-no-answer-demo-one|incoming-dialstatus-no-answer-ghost-mountain|incoming-dialstatus-no-answer-groundscore-one|incoming-dialstatus-no-answer-landline|incoming-dialstatus-no-answer-souwester|internaldial|outgoing-dialstatus-busy|outgoing-dialstatus-completed|outgoing-dialstatus-no-answer&a=weekly&p=ainsworth|alleytwentyseventh|brazee|breckenridge|central|clinton|dome-basement|dome-booth|dome-office|eighth|fiftyeighth|fortysecond|ghost-mountain|groundscore-one|groundscore-two|voipms|twilio-termination|futel.pstn.twilio.com|killingsworth|landline|microcosm|mother-foucaults|princeton|saratoga|seattle-cafered|seattle-estelitas|seattle-fortysecond|seattle-thistle|street-roots-one|sunnyside-shower-project|system|taylor|twilio&chart=bar&t=Good dialstatus',
-        'r=-6w&a=weekly&p=ainsworth|alleytwentyseventh|brazee|breckenridge|central|cesar-chavez-one|cesar-chavez-two|clinton|dome-basement|dome-booth|dome-office|eighth|fiftyeighth|fortysecond|ghost-mountain|groundscore-one|groundscore-two|voipms|twilio-termination|futel.pstn.twilio.com|killingsworth|landline|microcosm|mother-foucaults|princeton|saratoga|seattle-cafered|seattle-estelitas|seattle-fortysecond|seattle-thistle|street-roots-one|sunnyside-shower-project|system|taylor|twilio&e=error-11200|error-13224|error-13225|error-13227|error-32009|error-32011|error-32014|error-32017|error-32022|error-32202|incoming-dialstatus-failed-ghost-mountain|outgoing-dialstatus-failed|twilio-error-11200|twilio-error-13224|twilio-error-13225|twilio-error-13227|twilio-error-15003|twilio-error-32009|twilio-error-32011|twilio-error-32014|twilio-error-32017|twilio-error-32022|twilio-error-32102|twilio-error-32106|twilio-error-32202|twilio-error-32207|twilio-error-32222&chart=bar&t=Bad status',
+      {
+        t: 'Good dialstatus',
+        r: '-6w',
+        a: 'weekly',
+        chart: 'bar',
+        p: [
+          'ainsworth',
+          'alleytwentyseventh',
+          'brazee',
+          'breckenridge',
+          'central',
+          'clinton',
+          'dome-basement',
+          'dome-booth',
+          'dome-office',
+          'eighth',
+          'fiftyeighth',
+          'fortysecond',
+          'ghost-mountain',
+          'voipms',
+          'twilio-termination',
+          'futel.pstn.twilio.com',
+          'killingsworth',
+          'landline',
+          'microcosm',
+          'mother-foucaults',
+          'princeton',
+          'saratoga',
+          'seattle-cafered',
+          'seattle-estelitas',
+          'seattle-fortysecond',
+          'seattle-thistle',
+          'street-roots-one',
+          'sunnyside-shower-project',
+          'system',
+          'taylor',
+          'twilio',
+        ],
+        e: [
+          'incoming-dialstatus-busy-cesar-chavez',
+          'incoming-dialstatus-busy-ghost-mountain',
+          'incoming-dialstatus-completed-cesar-chavez',
+          'incoming-dialstatus-completed-ghost-mountain',
+          'incoming-dialstatus-no-answer-cesar-chavez',
+          'incoming-dialstatus-no-answer-demo-one',
+          'incoming-dialstatus-no-answer-ghost-mountain',
+          'incoming-dialstatus-no-answer-landline',
+          'incoming-dialstatus-no-answer-souwester',
+          'internaldial',
+          'outgoing-dialstatus-busy',
+          'outgoing-dialstatus-completed',
+          'outgoing-dialstatus-no-answer',
+        ],
+      },
+      {
+        t: 'Bad status',
+        r: '-6w',
+        a: 'weekly',
+        chart: 'bar',
+        p: [
+          'ainsworth',
+          'alleytwentyseventh',
+          'brazee',
+          'breckenridge',
+          'central',
+          'cesar-chavez-one',
+          'clinton',
+          'dome-basement',
+          'dome-booth',
+          'dome-office',
+          'eighth',
+          'fiftyeighth',
+          'fortysecond',
+          'ghost-mountain',
+          'voipms',
+          'twilio-termination',
+          'futel.pstn.twilio.com',
+          'killingsworth',
+          'landline',
+          'microcosm',
+          'mother-foucaults',
+          'princeton',
+          'saratoga',
+          'seattle-cafered',
+          'seattle-estelitas',
+          'seattle-fortysecond',
+          'seattle-thistle',
+          'street-roots-one',
+          'sunnyside-shower-project',
+          'system',
+          'taylor',
+          'twilio',
+        ],
+        e: [
+          'error-11200',
+          'error-13224',
+          'error-13225',
+          'error-13227',
+          'error-32009',
+          'error-32011',
+          'error-32014',
+          'error-32017',
+          'error-32022',
+          'error-32202',
+          'incoming-dialstatus-failed-ghost-mountain',
+          'outgoing-dialstatus-failed',
+          'twilio-error-11200',
+          'twilio-error-13224',
+          'twilio-error-13225',
+          'twilio-error-13227',
+          'twilio-error-15003',
+          'twilio-error-32009',
+          'twilio-error-32011',
+          'twilio-error-32014',
+          'twilio-error-32017',
+          'twilio-error-32022',
+          'twilio-error-32102',
+          'twilio-error-32106',
+          'twilio-error-32202',
+          'twilio-error-32207',
+          'twilio-error-32222',
+        ],
+      },
     ];
 
+    // Return the query string for a graph's parameters.
+    function query(params) {
+      const search = new URLSearchParams();
+      Object.entries(params).forEach(([key, value]) => {
+        search.set(key, Array.isArray(value) ? value.join('|') : value);
+      });
+      return search.toString();
+    }
+
     const container = document.getElementById('graphs');
-    graphs.forEach(query => {
+    graphs.forEach(params => {
       const div = document.createElement('div');
       div.classList.add('graph');
       const iframe = document.createElement('iframe');
-      iframe.src = `index.html?${query}&embed=1`;
+      iframe.src = `index.html?${query({...params, embed: 1})}`;
       div.appendChild(iframe);
       const link = document.createElement('a');
-      link.href = `index.html?${query}`;
+      link.href = `index.html?${query(params)}`;
       link.classList.add('tinytext');
       link.innerText = 'open in editor';
       div.appendChild(link);
