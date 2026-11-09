@@ -7,6 +7,8 @@ Usage data processing and visualization.
 
 https://futel.github.io/usage/
 
+https://futel.github.io/usage/dashboard
+
 # static-gen
 
 The [`static-gen`](./static-gen) directory contains the source for
